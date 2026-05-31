@@ -13,8 +13,8 @@ interface Props {
 const EXPO = "cubic-bezier(0.16, 1, 0.3, 1)";
 
 export default function PhilosophyContent({ eyebrow, headline1, headline2, body1, body2 }: Props) {
-  const { ref: headerRef, inView: headerIn } = useInView(0.2);
-  const { ref: bodyRef, inView: bodyIn } = useInView(0.15);
+  const { ref: headerRef, inView: headerIn } = useInView(0.3);
+  const { ref: bodyRef, inView: bodyIn } = useInView(0.20);
 
   return (
     <div className="max-w-6xl mx-auto">

@@ -11,11 +11,11 @@ interface LevelCardProps {
 }
 
 const EXPO = "cubic-bezier(0.16, 1, 0.3, 1)";
-const STAGGER_MS = 60;
+const STAGGER_MS = 90;
 
 export default function LevelCard({ level, index = 0, inView = true }: LevelCardProps) {
   const cardDelay = index * STAGGER_MS;
-  const barDelay  = cardDelay + 360;
+  const barDelay  = cardDelay + 1000;
 
   return (
     <div

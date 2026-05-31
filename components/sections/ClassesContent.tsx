@@ -21,8 +21,8 @@ export default function ClassesContent({
   footnote,
   levels,
 }: Props) {
-  const { ref: headerRef, inView: headerIn } = useInView(0.2);
-  const { ref: gridRef, inView: gridIn } = useInView(0.08);
+  const { ref: headerRef, inView: headerIn } = useInView(0.20);
+  const { ref: gridRef, inView: gridIn } = useInView(0.12);
 
   return (
     <div className="max-w-6xl mx-auto">

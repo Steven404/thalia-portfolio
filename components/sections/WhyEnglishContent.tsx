@@ -17,7 +17,7 @@ interface Props {
 }
 
 const EXPO = "cubic-bezier(0.16, 1, 0.3, 1)";
-const BENEFIT_STAGGER = 50;
+const BENEFIT_STAGGER = 90;
 
 export default function WhyEnglishContent({
   eyebrow,
@@ -32,9 +32,9 @@ export default function WhyEnglishContent({
   conclusionBody2,
   conclusionBody3,
 }: Props) {
-  const { ref: headerRef, inView: headerIn } = useInView(0.2);
-  const { ref: benefitsRef, inView: benefitsIn } = useInView(0.06);
-  const { ref: conclusionRef, inView: conclusionIn } = useInView(0.15);
+  const { ref: headerRef, inView: headerIn } = useInView(0.25);
+  const { ref: benefitsRef, inView: benefitsIn } = useInView(0.09);
+  const { ref: conclusionRef, inView: conclusionIn } = useInView(0.17);
 
   return (
     <div className="max-w-6xl mx-auto">

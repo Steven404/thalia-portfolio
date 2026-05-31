@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
  * If the user prefers reduced motion, resolves immediately so content
  * is never gated behind an animation that won't play.
  */
-export function useInView(threshold = 0.12) {
+export function useInView(threshold = 0.30) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
 
