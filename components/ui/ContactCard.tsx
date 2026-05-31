@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { ContactItem } from "@/lib/data";
 
 const PhoneIcon = () => (
@@ -45,7 +45,12 @@ export default function ContactCard({ item, index, inView }: ContactCardProps) {
   const Icon = icons[item.icon];
   const [hovered, setHovered] = useState(false);
   const [pressed, setPressed] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
   const enterDelay = index * STAGGER_MS;
+
+  useEffect(() => {
+    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+  }, []);
 
   const hoverTransform = pressed
     ? "translateY(-1px) scale(0.98)"
@@ -65,7 +70,7 @@ export default function ContactCard({ item, index, inView }: ContactCardProps) {
         href={item.href}
         target={item.external ? "_blank" : undefined}
         rel={item.external ? "noopener noreferrer" : undefined}
-        className="flex flex-col gap-4 p-10 relative overflow-hidden"
+        className="flex flex-col gap-4 p-6 sm:p-10 relative overflow-hidden"
         style={{
           background: hovered ? "oklch(10.9% 0.006 133)" : "var(--bg)",
           boxShadow: hovered
@@ -78,6 +83,9 @@ export default function ContactCard({ item, index, inView }: ContactCardProps) {
         onMouseLeave={() => { setHovered(false); setPressed(false); }}
         onMouseDown={() => setPressed(true)}
         onMouseUp={() => setPressed(false)}
+        onTouchStart={() => { setHovered(true); setPressed(true); }}
+        onTouchEnd={() => { setPressed(false); setTimeout(() => setHovered(false), 180); }}
+        onTouchCancel={() => { setHovered(false); setPressed(false); }}
       >
         {/* Icon badge */}
         <div
@@ -103,6 +111,8 @@ export default function ContactCard({ item, index, inView }: ContactCardProps) {
             style={{
               color: hovered ? "var(--sage)" : "var(--ink)",
               transition: `color 300ms ${EXPO}`,
+              overflowWrap: "break-word",
+              wordBreak: "break-all",
             }}
           >
             {item.value}
@@ -112,14 +122,14 @@ export default function ContactCard({ item, index, inView }: ContactCardProps) {
           </p>
         </div>
 
-        {/* Diagonal arrow — slides in on hover */}
+        {/* Diagonal arrow — always visible on touch, slides in on hover for mouse */}
         <div
-          className="absolute bottom-8 right-8"
+          className="absolute bottom-5 right-5 sm:bottom-8 sm:right-8"
           style={{
-            opacity: hovered ? 1 : 0,
-            transform: hovered ? "translate(0, 0)" : "translate(-5px, 5px)",
+            opacity: hovered || isTouch ? 1 : 0,
+            transform: hovered || isTouch ? "translate(0, 0)" : "translate(-5px, 5px)",
             transition: `opacity 250ms ${EXPO}, transform 250ms ${EXPO}`,
-            color: "var(--sage)",
+            color: isTouch ? "var(--sage-dim)" : "var(--sage)",
           }}
           aria-hidden
         >

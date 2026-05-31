@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, Link } from "@/i18n/navigation";
 
@@ -9,13 +10,31 @@ export default function Navbar() {
   const locale = useLocale();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const ignoreOpenRef = useRef(false);
+
+  useEffect(() => setMounted(true), []);
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+    // Block ghost clicks from re-opening the menu after close (mobile)
+    ignoreOpenRef.current = true;
+    window.setTimeout(() => {
+      ignoreOpenRef.current = false;
+    }, 400);
+  };
+
+  const openMenu = () => {
+    if (ignoreOpenRef.current) return;
+    setMenuOpen(true);
+  };
 
   // Close on Escape key + lock body scroll while open
   useEffect(() => {
     if (!menuOpen) return;
 
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMenuOpen(false);
+      if (e.key === "Escape") closeMenu();
     };
 
     document.body.style.overflow = "hidden";
@@ -91,12 +110,15 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile: hamburger button */}
+        {/* Mobile: hamburger button — hidden while menu is open to avoid ghost-click reopen */}
         <button
-          className="md:hidden flex flex-col justify-center items-center w-11 h-11 gap-[6px] cursor-pointer"
-          onClick={() => setMenuOpen(true)}
+          className={`md:hidden flex flex-col justify-center items-center w-11 h-11 gap-[6px] cursor-pointer ${
+            menuOpen ? "pointer-events-none invisible" : ""
+          }`}
+          onClick={openMenu}
           aria-label="Open menu"
           aria-expanded={menuOpen}
+          tabIndex={menuOpen ? -1 : 0}
         >
           <span
             className="block h-px w-6 transition-colors"
@@ -113,8 +135,10 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile menu overlay */}
-      {menuOpen && (
+      {/* Mobile menu overlay — portaled to body to escape overflow/stacking contexts */}
+      {mounted &&
+        menuOpen &&
+        createPortal(
         <div
           className="fixed inset-0 md:hidden"
           style={{ zIndex: 50 }}
@@ -126,12 +150,12 @@ export default function Navbar() {
           <div
             className="absolute inset-0"
             style={{ background: "oklch(4% 0.003 133 / 0.92)", backdropFilter: "blur(12px)" }}
-            onClick={() => setMenuOpen(false)}
+            onClick={closeMenu}
           />
 
           {/* Panel */}
           <div
-            className="relative flex flex-col h-full px-8 py-8"
+            className="relative z-10 flex flex-col h-full px-8 py-8"
             style={{
               animation: "menuSlideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards",
             }}
@@ -147,8 +171,12 @@ export default function Navbar() {
 
               {/* Close button */}
               <button
-                className="flex items-center justify-center w-11 h-11 cursor-pointer"
-                onClick={() => setMenuOpen(false)}
+                type="button"
+                className="relative z-20 flex items-center justify-center w-11 h-11 cursor-pointer touch-manipulation"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  closeMenu();
+                }}
                 aria-label="Close menu"
               >
                 <svg
@@ -186,7 +214,7 @@ export default function Navbar() {
                     borderBottom: "1px solid var(--border)",
                     animationDelay: `${0.06 * i}s`,
                   }}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={closeMenu}
                   onTouchStart={(e) => (e.currentTarget.style.color = "var(--sage)")}
                   onTouchEnd={(e) => (e.currentTarget.style.color = "var(--ink-muted)")}
                 >
@@ -205,7 +233,7 @@ export default function Navbar() {
                   color: locale === "en" ? "var(--sage)" : "var(--ink-dim)",
                   borderBottom: locale === "en" ? "1px solid var(--sage)" : "1px solid transparent",
                 }}
-                onClick={() => setMenuOpen(false)}
+                onClick={closeMenu}
               >
                 EN
               </Link>
@@ -218,13 +246,14 @@ export default function Navbar() {
                   color: locale === "el" ? "var(--sage)" : "var(--ink-dim)",
                   borderBottom: locale === "el" ? "1px solid var(--sage)" : "1px solid transparent",
                 }}
-                onClick={() => setMenuOpen(false)}
+                onClick={closeMenu}
               >
                 ΕΛ
               </Link>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

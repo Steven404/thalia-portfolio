@@ -30,7 +30,7 @@ export default async function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden py-28 px-8 md:px-16"
+      className="relative overflow-hidden py-16 md:py-28 px-8 md:px-16"
       style={{ background: "var(--bg)" }}
     >
       <ContactContent

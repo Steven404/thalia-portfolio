@@ -32,7 +32,7 @@ export default function ContactContent({
         className="pointer-events-none absolute -left-20 -bottom-20 select-none leading-none"
         style={{
           fontFamily: "var(--font-playfair), Playfair Display, serif",
-          fontSize: "clamp(200px, 30vw, 400px)",
+          fontSize: "clamp(100px, 28vw, 400px)",
           color: "transparent",
           WebkitTextStroke: "1px oklch(67% 0.055 133 / 0.12)",
           fontStyle: "italic",
@@ -49,7 +49,7 @@ export default function ContactContent({
       <div className="relative z-10 max-w-6xl mx-auto">
 
         {/* ── Header ─────────────────────────────────── */}
-        <div ref={headerRef} className="mb-20">
+        <div ref={headerRef} className="mb-10 md:mb-20">
           <h2
             className="leading-tight"
             style={{
@@ -110,7 +110,7 @@ export default function ContactContent({
         {/* ── Footer strip ───────────────────────────── */}
         <div
           ref={footerRef}
-          className="mt-16 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+          className="mt-10 md:mt-16 pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
           style={{
             borderTop: "1px solid oklch(28% 0.010 133)",
             opacity: footerIn ? 1 : 0,
@@ -134,6 +134,37 @@ export default function ContactContent({
             }}
           >
             &ldquo;{footerQuote}&rdquo;
+          </span>
+        </div>
+
+        {/* ── Developer credit ────────────────────────── */}
+        <div
+          className="mt-6 flex items-center justify-center"
+          style={{
+            opacity: footerIn ? 1 : 0,
+            transition: `opacity 600ms 240ms ${EXPO}`,
+          }}
+        >
+          <span
+            className="text-xs tracking-[0.12em]"
+            style={{ color: "oklch(42% 0.012 133)" }}
+          >
+            Designed &amp; Developed by{" "}
+            <a
+              href="https://www.stefanos-michelakis.gr"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Στέφανος Μιχελάκης"
+              style={{
+                color: "var(--sage-dim)",
+                textUnderlineOffset: "3px",
+                textDecorationColor: "oklch(55% 0.08 133 / 0.5)",
+                transition: "color 300ms ease, text-decoration-color 300ms ease",
+              }}
+              className="underline decoration-1 hover:text-(--sage-bright)"
+            >
+              Stefanos Michelakis
+            </a>
           </span>
         </div>
 
