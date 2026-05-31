@@ -8,7 +8,7 @@ import "../globals.css";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
-  subsets: ["latin", "greek"],
+  subsets: ["latin", "latin-ext"],
   style: ["normal", "italic"],
   weight: ["400", "500", "600", "700", "800", "900"],
 });
