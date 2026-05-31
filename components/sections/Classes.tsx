@@ -22,7 +22,7 @@ export default async function Classes() {
         headline1={t("headline1")}
         headline2={t("headline2")}
         description={t("description")}
-        footnote={t("footnote")}
+        footnote={t.rich("footnote", { br: () => <br /> })}
         levels={levels}
       />
     </section>

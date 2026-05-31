@@ -20,7 +20,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Thalia — Private English Teacher",
+  title: "Thalia Kiosi — Private English Teacher",
   description:
     "Private English lessons for all levels, from A1 to C2. Personalised, effective, and engaging.",
 };
@@ -46,6 +46,11 @@ export default async function LocaleLayout({
       className={`${playfair.variable} ${dmSans.variable}`}
     >
       <body className="min-h-screen">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if("scrollRestoration"in history)history.scrollRestoration="manual";window.scrollTo(0,0);`,
+          }}
+        />
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>

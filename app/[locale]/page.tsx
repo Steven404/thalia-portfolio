@@ -1,5 +1,7 @@
 import Hero from "@/components/sections/Hero";
 import Classes from "@/components/sections/Classes";
+import Philosophy from "@/components/sections/Philosophy";
+import WhyEnglish from "@/components/sections/WhyEnglish";
 import Contact from "@/components/sections/Contact";
 
 export default function Home() {
@@ -10,6 +12,8 @@ export default function Home() {
     >
       <Hero />
       <Classes />
+      <Philosophy />
+      <WhyEnglish />
       <Contact />
     </main>
   );

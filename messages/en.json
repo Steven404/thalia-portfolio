@@ -6,44 +6,74 @@
   },
   "hero": {
     "eyebrow": "Private English Lessons",
-    "headline1": "Words open",
-    "headline2": "every door.",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Personalised lessons tailored to your pace, your goals, and your life.",
+    "headline1": "Your English Learning",
+    "headline2": "Journey Starts Here.",
+    "description1": "My name is Thalia, and I am an English teacher holding a Bachelor's Degree in English Language and Literature from Aristotle University of Thessaloniki.",
+    "description2": "Teaching is much more than a profession for me, it is my passion. Sharing knowledge, inspiring confidence, and helping learners discover the joy of learning are at the heart of my teaching philosophy. Every student is unique, which is why I offer personalized lessons tailored to individual goals, needs, learning styles, and abilities.",
+    "description3": "I provide both online and in-person lessons, creating a flexible learning environment that allows students to progress comfortably and effectively, wherever they are.",
     "cta_primary": "Get in touch",
     "cta_secondary": "View classes"
   },
   "classes": {
     "eyebrow": "English Courses",
-    "headline1": "All levels,",
-    "headline2": "one teacher.",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.",
-    "footnote": "All lessons are conducted online or in-person. Contact me to discuss scheduling.",
+    "headline1": "The Journey Through",
+    "headline2": "the English Language Levels",
+    "description": "Learning English is a journey made up of important milestones. Each level builds essential skills, confidence, and knowledge, preparing learners for the next stage of success.",
+    "footnote": "Every level is a challenge to conquer, a success to celebrate, and a stepping stone toward new achievements.<br></br>Together, we will overcome obstacles, build confidence, and continue moving forward with patience, determination, and enthusiasm.",
     "levels": {
       "A1": {
         "name": "Beginner",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Perfect for those taking their very first steps into English."
+        "description": "The A1 level is the foundation of language learning. Students begin to understand and use basic everyday expressions, introduce themselves, and communicate simple needs. At this stage, the focus is on building confidence and creating a strong foundation for future learning."
       },
       "A2": {
         "name": "Elementary",
-        "description": "Sed do eiusmod tempor incididunt ut labore. Build confidence with everyday vocabulary and simple conversations."
+        "description": "At A2, learners expand their vocabulary and improve their ability to communicate in everyday situations. Students learn to discuss familiar topics such as family, hobbies, work, and daily routines. Consistent practice helps transform basic knowledge into practical communication skills."
       },
       "B1": {
         "name": "Intermediate",
-        "description": "Ut enim ad minim veniam, quis nostrud exercitation. Navigate travel, work, and social situations with ease."
+        "description": "B1 marks the transition toward independent language use. Learners can understand the main points of conversations, express opinions, and handle a variety of real-life situations. This level is a significant milestone because students begin to communicate with greater confidence and autonomy."
       },
       "B2": {
-        "name": "Upper-Intermediate",
-        "description": "Duis aute irure dolor in reprehenderit in voluptate. Engage in complex discussions and produce clear, detailed text."
+        "name": "Upper Intermediate",
+        "description": "At B2, learners develop fluency and accuracy. They can participate actively in discussions, understand more complex texts, and communicate effectively in academic and professional settings. Reaching this level opens doors to new educational and career opportunities."
       },
       "C1": {
         "name": "Advanced",
-        "description": "Excepteur sint occaecat cupidatat non proident. Express ideas fluently and spontaneously without much searching."
+        "description": "The C1 level allows students to use English with flexibility and confidence. Learners can understand demanding texts, express themselves clearly and effectively, and communicate comfortably in professional, academic, and social environments. This stage focuses on refining language skills and achieving greater precision."
       },
       "C2": {
-        "name": "Mastery",
-        "description": "Sunt in culpa qui officia deserunt mollit anim. Understand virtually everything with ease and nuance."
+        "name": "Proficiency",
+        "description": "C2 represents mastery of the English language. Learners can understand virtually everything they hear or read, express themselves effortlessly, and communicate naturally in any situation. Achieving this level is a testament to dedication, perseverance, and a genuine passion for learning."
       }
     }
+  },
+  "philosophy": {
+    "eyebrow": "Philosophy",
+    "headline1": "A Place for",
+    "headline2": "Every Learner",
+    "body1": "Every student is welcome, regardless of age, level, background, or learning style. I believe that learning flourishes in a supportive and encouraging environment where achievements are celebrated and challenges are viewed as opportunities for growth.",
+    "body2": "As much as I enjoy sharing my knowledge, I also value what I learn from my students. Every learner brings unique experiences, perspectives, and strengths that enrich the educational journey for both teacher and student."
+  },
+  "why": {
+    "eyebrow": "Why English",
+    "headline1": "Why Learn",
+    "headline2": "English?",
+    "intro": "English is much more than a language — it is a powerful tool that opens doors to countless opportunities.",
+    "sub_intro": "Learning English can help you:",
+    "benefit_1": "Advance your career and access international job opportunities.",
+    "benefit_2": "Study at universities and educational institutions around the world.",
+    "benefit_3": "Travel with greater confidence and independence.",
+    "benefit_4": "Communicate with people from different cultures and backgrounds.",
+    "benefit_5": "Access global information, research, and educational resources.",
+    "benefit_6": "Enjoy books, films, music, and media in their original language.",
+    "benefit_7": "Build confidence in professional and social situations.",
+    "benefit_8": "Expand your personal and professional network internationally.",
+    "benefit_9": "Develop valuable communication, critical thinking, and problem-solving skills.",
+    "tagline": "English is an investment in yourself — one that continues to provide value throughout your life.",
+    "conclusion_eyebrow": "Conclusion",
+    "conclusion_body1": "Learning a language is not about perfection; it is about growth, confidence, and discovering new possibilities. Every lesson is a step toward achieving your goals, and every achievement, no matter how small, deserves recognition.",
+    "conclusion_body2": "I look forward to being part of your learning journey and helping you unlock your full potential in English.",
+    "conclusion_body3": "Every level conquered is a milestone worth celebrating. With patience, dedication, and personalized guidance, every learner can build confidence, overcome challenges, and achieve their goals."
   },
   "contact": {
     "eyebrow": "Get in touch",

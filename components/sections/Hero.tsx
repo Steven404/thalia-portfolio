@@ -42,7 +42,7 @@ export default function Hero() {
           className="animate-fade-up delay-200 leading-[1.05] mb-8"
           style={{
             fontFamily: "var(--font-playfair), Playfair Display, serif",
-            fontSize: "clamp(48px, 8.5vw, 96px)",
+            fontSize: "clamp(36px, 6vw, 76px)",
             color: "var(--ink)",
             fontWeight: 800,
             textWrap: "balance",
@@ -56,12 +56,26 @@ export default function Hero() {
           </em>
         </h1>
 
-        <p
-          className="max-w-lg text-base md:text-lg leading-relaxed animate-fade-up delay-300"
-          style={{ color: "var(--ink-muted)", fontWeight: 300 }}
-        >
-          {t("description")}
-        </p>
+        <div className="max-w-xl flex flex-col gap-4 animate-fade-up delay-300">
+          <p
+            className="text-sm md:text-base leading-relaxed"
+            style={{ color: "var(--ink-muted)", fontWeight: 400 }}
+          >
+            {t("description1")}
+          </p>
+          <p
+            className="text-sm md:text-base leading-relaxed"
+            style={{ color: "var(--ink-muted)", fontWeight: 300 }}
+          >
+            {t("description2")}
+          </p>
+          <p
+            className="text-sm md:text-base leading-relaxed"
+            style={{ color: "var(--ink-muted)", fontWeight: 300 }}
+          >
+            {t("description3")}
+          </p>
+        </div>
 
         <div className="mt-10 flex flex-col sm:flex-row gap-4 animate-fade-up delay-400">
           <a

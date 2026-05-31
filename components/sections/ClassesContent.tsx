@@ -8,7 +8,7 @@ interface Props {
   headline1: string;
   headline2: string;
   description: string;
-  footnote: string;
+  footnote: React.ReactNode;
   levels: Level[];
 }
 
@@ -90,7 +90,7 @@ export default function ClassesContent({
 
       {/* Footnote fades in after the last card */}
       <p
-        className="mt-10 text-xs text-center leading-relaxed"
+        className="mt-10 text-sm text-center leading-relaxed"
         style={{
           color: "var(--sage-dim)",
           opacity: gridIn ? 1 : 0,
