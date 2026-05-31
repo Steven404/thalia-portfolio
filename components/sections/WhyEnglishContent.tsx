@@ -27,7 +27,7 @@ export default function WhyEnglishContent({
   subIntro,
   benefits,
   tagline,
-  conclusionEyebrow,
+  // conclusionEyebrow omitted — second eyebrow within one section is AI grammar
   conclusionBody1,
   conclusionBody2,
   conclusionBody3,
@@ -115,13 +115,13 @@ export default function WhyEnglishContent({
         </p>
 
         <div
-          className="grid grid-cols-1 sm:grid-cols-2 gap-px"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px"
           style={{ background: "oklch(17% 0.006 133)" }}
         >
           {benefits.map((benefit, i) => (
             <div
               key={i}
-              className="flex items-start gap-5 p-6 group"
+              className="flex items-start gap-4 p-6"
               style={{
                 background: "var(--surface-card)",
                 opacity: benefitsIn ? 1 : 0,
@@ -139,50 +139,46 @@ export default function WhyEnglishContent({
                 e.currentTarget.style.backgroundColor = "var(--surface-card)";
               }}
             >
-              {/* Numbered label */}
+              {/* Sage rule accent */}
               <span
-                className="shrink-0 tabular-nums"
+                className="shrink-0 block"
                 style={{
-                  fontFamily: "var(--font-playfair), Playfair Display, serif",
-                  fontSize: "1.1rem",
-                  fontWeight: 700,
-                  color: "var(--sage)",
-                  letterSpacing: "-0.03em",
-                  marginTop: "0.05rem",
-                  opacity: 0.75,
-                  lineHeight: 1,
+                  width: "14px",
+                  height: "1px",
+                  background: "var(--sage)",
+                  opacity: 0.65,
+                  marginTop: "0.55rem",
+                  flexShrink: 0,
                 }}
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
+                aria-hidden
+              />
 
-              <p className="text-sm leading-relaxed" style={{ color: "var(--ink-muted)" }}>
+              <p className="text-[15px] leading-relaxed" style={{ color: "var(--ink-muted)" }}>
                 {benefit}
               </p>
             </div>
           ))}
         </div>
 
-        {/* Investment tagline */}
-        <div
-          className="mt-10 pl-6 py-3"
+        {/* Investment tagline — pull-quote, no border */}
+        <blockquote
+          className="mt-12 text-center"
           style={{
-            borderLeft: "2px solid var(--sage-dim)",
             opacity: benefitsIn ? 1 : 0,
             transform: benefitsIn ? "translateY(0)" : "translateY(14px)",
             transition: `opacity 700ms ${benefits.length * BENEFIT_STAGGER + 200}ms ${EXPO}, transform 700ms ${benefits.length * BENEFIT_STAGGER + 200}ms ${EXPO}`,
           }}
         >
           <p
-            className="text-sm italic leading-relaxed"
+            className="text-base md:text-lg italic leading-relaxed"
             style={{
               fontFamily: "var(--font-playfair), Playfair Display, serif",
-              color: "var(--sage-dim)",
+              color: "var(--sage)",
             }}
           >
             &ldquo;{tagline}&rdquo;
           </p>
-        </div>
+        </blockquote>
       </div>
 
       {/* ── Conclusion ──────────────────────────────── */}
@@ -200,28 +196,17 @@ export default function WhyEnglishContent({
           />
         </div>
 
-        <p
-          className="mb-10 text-xs font-medium tracking-[0.3em] uppercase"
-          style={{
-            color: "var(--sage)",
-            opacity: conclusionIn ? 1 : 0,
-            transition: `opacity 600ms 100ms ${EXPO}`,
-          }}
-        >
-          {conclusionEyebrow}
-        </p>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
-          {/* First two paragraphs in muted body text */}
           <p
             className="text-sm leading-loose"
             style={{
               color: "var(--ink-muted)",
               fontWeight: 300,
+              textWrap: "pretty",
               opacity: conclusionIn ? 1 : 0,
               transform: conclusionIn ? "translateY(0)" : "translateY(18px)",
               transition: `opacity 700ms 200ms ${EXPO}, transform 700ms 200ms ${EXPO}`,
-            }}
+            } as React.CSSProperties}
           >
             {conclusionBody1}
           </p>
@@ -231,25 +216,27 @@ export default function WhyEnglishContent({
             style={{
               color: "var(--ink-muted)",
               fontWeight: 300,
+              textWrap: "pretty",
               opacity: conclusionIn ? 1 : 0,
               transform: conclusionIn ? "translateY(0)" : "translateY(18px)",
               transition: `opacity 700ms 300ms ${EXPO}, transform 700ms 300ms ${EXPO}`,
-            }}
+            } as React.CSSProperties}
           >
             {conclusionBody2}
           </p>
 
-          {/* Third paragraph styled as a closing statement */}
+          {/* Closing statement in display serif */}
           <p
             className="text-sm leading-loose italic"
             style={{
               fontFamily: "var(--font-playfair), Playfair Display, serif",
               color: "var(--ink)",
               fontWeight: 400,
+              textWrap: "pretty",
               opacity: conclusionIn ? 1 : 0,
               transform: conclusionIn ? "translateY(0)" : "translateY(18px)",
               transition: `opacity 700ms 400ms ${EXPO}, transform 700ms 400ms ${EXPO}`,
-            }}
+            } as React.CSSProperties}
           >
             {conclusionBody3}
           </p>

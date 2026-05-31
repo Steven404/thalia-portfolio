@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import type { ContactItem } from "@/lib/data";
 
 const PhoneIcon = () => (
@@ -23,58 +24,108 @@ const InstagramIcon = () => (
   </svg>
 );
 
+const ArrowDiagIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M7 17L17 7M17 7H7M17 7v10" />
+  </svg>
+);
+
 const icons = { phone: PhoneIcon, email: EmailIcon, instagram: InstagramIcon };
 
 interface ContactCardProps {
   item: ContactItem;
+  index: number;
+  inView: boolean;
 }
 
-export default function ContactCard({ item }: ContactCardProps) {
+const EXPO = "cubic-bezier(0.16, 1, 0.3, 1)";
+const STAGGER_MS = 80;
+
+export default function ContactCard({ item, index, inView }: ContactCardProps) {
   const Icon = icons[item.icon];
+  const [hovered, setHovered] = useState(false);
+  const [pressed, setPressed] = useState(false);
+  const enterDelay = index * STAGGER_MS;
+
+  const hoverTransform = pressed
+    ? "translateY(-1px) scale(0.98)"
+    : hovered
+      ? "translateY(-3px)"
+      : "translateY(0)";
 
   return (
-    <a
-      href={item.href}
-      target={item.external ? "_blank" : undefined}
-      rel={item.external ? "noopener noreferrer" : undefined}
-      className="group flex flex-col gap-4 p-10 transition-colors duration-300"
-      style={{ background: "var(--bg)" }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.background = "oklch(10.9% 0.006 133)";
-        const badge = e.currentTarget.querySelector<HTMLElement>(".icon-badge");
-        if (badge) badge.style.background = "oklch(67% 0.055 133 / 0.15)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.background = "var(--bg)";
-        const badge = e.currentTarget.querySelector<HTMLElement>(".icon-badge");
-        if (badge) badge.style.background = "var(--border)";
+    <div
+      style={{
+        opacity: inView ? 1 : 0,
+        transform: inView ? "translateY(0)" : "translateY(20px)",
+        transition: `opacity 600ms ${enterDelay}ms ${EXPO}, transform 600ms ${enterDelay}ms ${EXPO}`,
       }}
     >
-      {/* Icon badge */}
-      <div
-        className="icon-badge w-10 h-10 flex items-center justify-center rounded-sm transition-colors duration-300"
-        style={{ background: "var(--border)", color: "var(--sage)" }}
+      <a
+        href={item.href}
+        target={item.external ? "_blank" : undefined}
+        rel={item.external ? "noopener noreferrer" : undefined}
+        className="flex flex-col gap-4 p-10 relative overflow-hidden"
+        style={{
+          background: hovered ? "oklch(10.9% 0.006 133)" : "var(--bg)",
+          boxShadow: hovered
+            ? "0 12px 40px oklch(67% 0.055 133 / 0.1), 0 2px 8px oklch(0% 0 0 / 0.3)"
+            : "none",
+          transform: hoverTransform,
+          transition: `background 300ms ${EXPO}, box-shadow 300ms ${EXPO}, transform 200ms ${EXPO}`,
+        }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => { setHovered(false); setPressed(false); }}
+        onMouseDown={() => setPressed(true)}
+        onMouseUp={() => setPressed(false)}
       >
-        <Icon />
-      </div>
+        {/* Icon badge */}
+        <div
+          className="w-10 h-10 flex items-center justify-center rounded-sm"
+          style={{
+            background: hovered ? "oklch(67% 0.055 133 / 0.15)" : "var(--border)",
+            color: hovered ? "var(--sage-bright)" : "var(--sage)",
+            transition: `background 300ms ${EXPO}, color 300ms ${EXPO}`,
+          }}
+        >
+          <Icon />
+        </div>
 
-      <div>
-        <p
-          className="text-xs font-semibold tracking-widest uppercase mb-2"
-          style={{ color: "var(--sage-dim)" }}
+        <div>
+          <p
+            className="text-xs font-semibold tracking-widest uppercase mb-2"
+            style={{ color: "var(--sage-dim)" }}
+          >
+            {item.label}
+          </p>
+          <p
+            className="text-lg font-medium"
+            style={{
+              color: hovered ? "var(--sage)" : "var(--ink)",
+              transition: `color 300ms ${EXPO}`,
+            }}
+          >
+            {item.value}
+          </p>
+          <p className="mt-1 text-xs" style={{ color: "var(--ink-dim)" }}>
+            {item.subtitle}
+          </p>
+        </div>
+
+        {/* Diagonal arrow — slides in on hover */}
+        <div
+          className="absolute bottom-8 right-8"
+          style={{
+            opacity: hovered ? 1 : 0,
+            transform: hovered ? "translate(0, 0)" : "translate(-5px, 5px)",
+            transition: `opacity 250ms ${EXPO}, transform 250ms ${EXPO}`,
+            color: "var(--sage)",
+          }}
+          aria-hidden
         >
-          {item.label}
-        </p>
-        <p
-          className="text-lg font-medium transition-colors duration-300 group-hover:text-[var(--sage)]"
-          style={{ color: "var(--ink)" }}
-        >
-          {item.value}
-        </p>
-        <p className="mt-1 text-xs" style={{ color: "var(--ink-dim)" }}>
-          {item.subtitle}
-        </p>
-      </div>
-    </a>
+          <ArrowDiagIcon />
+        </div>
+      </a>
+    </div>
   );
 }

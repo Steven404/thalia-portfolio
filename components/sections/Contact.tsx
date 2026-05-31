@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import ContactCard from "@/components/ui/ContactCard";
+import ContactContent from "@/components/sections/ContactContent";
 import { CONTACT_HREFS } from "@/lib/data";
 import type { ContactItem } from "@/lib/data";
 
@@ -33,76 +33,13 @@ export default async function Contact() {
       className="relative overflow-hidden py-28 px-8 md:px-16"
       style={{ background: "var(--bg)" }}
     >
-      {/* Decorative background glyph */}
-      <div
-        className="pointer-events-none absolute -left-20 -bottom-20 select-none leading-none"
-        style={{
-          fontFamily: "var(--font-playfair), Playfair Display, serif",
-          fontSize: "clamp(200px, 30vw, 400px)",
-          color: "transparent",
-          WebkitTextStroke: "1px oklch(67% 0.055 133 / 0.12)",
-          fontStyle: "italic",
-          fontWeight: 900,
-        }}
-        aria-hidden
-      >
-        ℒ
-      </div>
-
-      <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="mb-20">
-          <h2
-            className="leading-tight"
-            style={{
-              fontFamily: "var(--font-playfair), Playfair Display, serif",
-              fontSize: "clamp(36px, 5vw, 64px)",
-              color: "var(--ink)",
-              fontWeight: 700,
-              textWrap: "balance",
-              letterSpacing: "-0.02em",
-            }}
-          >
-            {t("headline1")}
-            <br />
-            <em style={{ color: "var(--sage-bright)", fontStyle: "italic" }}>
-              {t("headline2")}
-            </em>
-          </h2>
-        </div>
-
-        {/* Contact cards — sage hairline separators */}
-        <div
-          className="grid grid-cols-1 md:grid-cols-3 gap-px"
-          style={{ background: "oklch(38% 0.030 133)" }}
-        >
-          {contactItems.map((item) => (
-            <ContactCard key={item.icon} item={item} />
-          ))}
-        </div>
-
-        {/* Footer strip */}
-        <div
-          className="mt-16 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
-          style={{ borderTop: "1px solid oklch(28% 0.010 133)" }}
-        >
-          <span
-            className="text-xs tracking-[0.2em] uppercase"
-            style={{ color: "var(--ink-dim)" }}
-          >
-            {t("footer_copy")}
-          </span>
-          <span
-            className="text-xs italic"
-            style={{
-              fontFamily: "var(--font-playfair), Playfair Display, serif",
-              color: "var(--sage-dim)",
-            }}
-          >
-            &ldquo;{t("footer_quote")}&rdquo;
-          </span>
-        </div>
-      </div>
+      <ContactContent
+        headline1={t("headline1")}
+        headline2={t("headline2")}
+        footerCopy={t("footer_copy")}
+        footerQuote={t("footer_quote")}
+        contactItems={contactItems}
+      />
     </section>
   );
 }

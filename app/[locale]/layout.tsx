@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import ScrollRestoration from "@/components/ScrollRestoration";
 import "../globals.css";
 
 const playfair = Playfair_Display({
@@ -46,12 +47,8 @@ export default async function LocaleLayout({
       className={`${playfair.variable} ${dmSans.variable}`}
     >
       <body className="min-h-screen">
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `if("scrollRestoration"in history)history.scrollRestoration="manual";window.scrollTo(0,0);`,
-          }}
-        />
         <NextIntlClientProvider messages={messages}>
+          <ScrollRestoration />
           {children}
         </NextIntlClientProvider>
       </body>

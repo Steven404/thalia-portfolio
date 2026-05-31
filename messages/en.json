@@ -2,6 +2,8 @@
   "nav": {
     "name": "Thalia",
     "classes": "Classes",
+    "philosophy": "Philosophy",
+    "why": "Why English",
     "contact": "Contact"
   },
   "hero": {
