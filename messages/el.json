@@ -1,0 +1,67 @@
+{
+  "nav": {
+    "name": "Θάλεια",
+    "classes": "Μαθήματα",
+    "contact": "Επικοινωνία"
+  },
+  "hero": {
+    "eyebrow": "Ιδιωτικά Μαθήματα Αγγλικών",
+    "headline1": "Οι λέξεις ανοίγουν",
+    "headline2": "κάθε πόρτα.",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Εξατομικευμένα μαθήματα προσαρμοσμένα στον ρυθμό, τους στόχους και τη ζωή σας.",
+    "cta_primary": "Επικοινωνήστε",
+    "cta_secondary": "Δείτε τα μαθήματα"
+  },
+  "classes": {
+    "eyebrow": "Μαθήματα Αγγλικών",
+    "headline1": "Όλα τα επίπεδα,",
+    "headline2": "μία καθηγήτρια.",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.",
+    "footnote": "Όλα τα μαθήματα πραγματοποιούνται διαδικτυακά ή δια ζώσης. Επικοινωνήστε για το πρόγραμμα.",
+    "levels": {
+      "A1": {
+        "name": "Αρχάριος",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ιδανικό για όσους κάνουν τα πρώτα τους βήματα στα Αγγλικά."
+      },
+      "A2": {
+        "name": "Στοιχειώδης",
+        "description": "Sed do eiusmod tempor incididunt ut labore. Χτίστε αυτοπεποίθηση με καθημερινό λεξιλόγιο και απλές συνομιλίες."
+      },
+      "B1": {
+        "name": "Μέσος",
+        "description": "Ut enim ad minim veniam, quis nostrud exercitation. Αντιμετωπίστε με άνεση ταξίδια, εργασία και κοινωνικές καταστάσεις."
+      },
+      "B2": {
+        "name": "Ανώτερος Μέσος",
+        "description": "Duis aute irure dolor in reprehenderit in voluptate. Συμμετέχετε σε σύνθετες συζητήσεις και παράγετε σαφές, λεπτομερές κείμενο."
+      },
+      "C1": {
+        "name": "Προχωρημένος",
+        "description": "Excepteur sint occaecat cupidatat non proident. Εκφραστείτε άνετα και αυθόρμητα χωρίς πολλή αναζήτηση."
+      },
+      "C2": {
+        "name": "Άριστος",
+        "description": "Sunt in culpa qui officia deserunt mollit anim. Κατανοήστε σχεδόν τα πάντα με άνεση και λεπτότητα."
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Επικοινωνία",
+    "headline1": "Ας ξεκινήσουμε το",
+    "headline2": "γλωσσικό σας ταξίδι.",
+    "phone": {
+      "label": "Τηλέφωνο",
+      "subtitle": "Δευ–Παρ, 9πμ–7μμ"
+    },
+    "email": {
+      "label": "Email",
+      "subtitle": "Απαντώ εντός 24 ωρών"
+    },
+    "instagram": {
+      "label": "Instagram",
+      "subtitle": "Συμβουλές, πόροι & νέα"
+    },
+    "footer_copy": "© 2026 Θάλεια — Ιδιωτική Καθηγήτρια Αγγλικών",
+    "footer_quote": "Τα όρια της γλώσσας μου είναι τα όρια του κόσμου μου."
+  }
+}

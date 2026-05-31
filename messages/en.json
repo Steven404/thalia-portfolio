@@ -1,0 +1,67 @@
+{
+  "nav": {
+    "name": "Thalia",
+    "classes": "Classes",
+    "contact": "Contact"
+  },
+  "hero": {
+    "eyebrow": "Private English Lessons",
+    "headline1": "Words open",
+    "headline2": "every door.",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Personalised lessons tailored to your pace, your goals, and your life.",
+    "cta_primary": "Get in touch",
+    "cta_secondary": "View classes"
+  },
+  "classes": {
+    "eyebrow": "English Courses",
+    "headline1": "All levels,",
+    "headline2": "one teacher.",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.",
+    "footnote": "All lessons are conducted online or in-person. Contact me to discuss scheduling.",
+    "levels": {
+      "A1": {
+        "name": "Beginner",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Perfect for those taking their very first steps into English."
+      },
+      "A2": {
+        "name": "Elementary",
+        "description": "Sed do eiusmod tempor incididunt ut labore. Build confidence with everyday vocabulary and simple conversations."
+      },
+      "B1": {
+        "name": "Intermediate",
+        "description": "Ut enim ad minim veniam, quis nostrud exercitation. Navigate travel, work, and social situations with ease."
+      },
+      "B2": {
+        "name": "Upper-Intermediate",
+        "description": "Duis aute irure dolor in reprehenderit in voluptate. Engage in complex discussions and produce clear, detailed text."
+      },
+      "C1": {
+        "name": "Advanced",
+        "description": "Excepteur sint occaecat cupidatat non proident. Express ideas fluently and spontaneously without much searching."
+      },
+      "C2": {
+        "name": "Mastery",
+        "description": "Sunt in culpa qui officia deserunt mollit anim. Understand virtually everything with ease and nuance."
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Get in touch",
+    "headline1": "Let's start your",
+    "headline2": "language journey.",
+    "phone": {
+      "label": "Phone",
+      "subtitle": "Mon–Fri, 9am–7pm"
+    },
+    "email": {
+      "label": "Email",
+      "subtitle": "I reply within 24 hours"
+    },
+    "instagram": {
+      "label": "Instagram",
+      "subtitle": "Tips, resources & updates"
+    },
+    "footer_copy": "© 2026 Thalia — Private English Teacher",
+    "footer_quote": "The limits of my language are the limits of my world."
+  }
+}
