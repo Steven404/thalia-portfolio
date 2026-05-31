@@ -39,13 +39,21 @@ export default function ContactCard({ item }: ContactCardProps) {
       rel={item.external ? "noopener noreferrer" : undefined}
       className="group flex flex-col gap-4 p-10 transition-colors duration-300"
       style={{ background: "var(--bg)" }}
-      onMouseEnter={(e) => (e.currentTarget.style.background = "var(--surface)")}
-      onMouseLeave={(e) => (e.currentTarget.style.background = "var(--bg)")}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.background = "oklch(10.9% 0.006 133)";
+        const badge = e.currentTarget.querySelector<HTMLElement>(".icon-badge");
+        if (badge) badge.style.background = "oklch(67% 0.055 133 / 0.15)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.background = "var(--bg)";
+        const badge = e.currentTarget.querySelector<HTMLElement>(".icon-badge");
+        if (badge) badge.style.background = "var(--border)";
+      }}
     >
       {/* Icon badge */}
       <div
-        className="w-10 h-10 flex items-center justify-center rounded-sm transition-colors duration-300"
-        style={{ background: "var(--border)", color: "var(--gold)" }}
+        className="icon-badge w-10 h-10 flex items-center justify-center rounded-sm transition-colors duration-300"
+        style={{ background: "var(--border)", color: "var(--sage)" }}
       >
         <Icon />
       </div>
@@ -53,12 +61,12 @@ export default function ContactCard({ item }: ContactCardProps) {
       <div>
         <p
           className="text-xs font-semibold tracking-widest uppercase mb-2"
-          style={{ color: "var(--gold-dim)" }}
+          style={{ color: "var(--sage-dim)" }}
         >
           {item.label}
         </p>
         <p
-          className="text-lg font-medium transition-colors duration-300 group-hover:text-[var(--gold)]"
+          className="text-lg font-medium transition-colors duration-300 group-hover:text-[var(--sage)]"
           style={{ color: "var(--ink)" }}
         >
           {item.value}

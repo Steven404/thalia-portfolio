@@ -3,21 +3,21 @@
 :root {
   /* ── Core surfaces ──────────────────────────────── */
   --bg:           oklch(0% 0 0);              /* #000000 – hero / contact ground */
-  --surface:      oklch(10.9% 0.003 65);      /* ≈ #171717, micro gold tint – classes */
+  --surface:      oklch(10.9% 0.003 133);     /* near-black with micro sage tint – classes */
   --surface-card: oklch(0% 0 0);              /* cards sit on pure black */
-  --surface-hover:oklch(10.9% 0.003 65);      /* card hover lifts to #171717 */
-  --border:       oklch(19% 0.005 65);        /* subtle warm-dark hairline */
-  --border-gold:  oklch(42% 0.08 65);         /* muted gold border / separator */
+  --surface-hover:oklch(10.9% 0.003 133);     /* card hover lifts to sage-tinted dark */
+  --border:       oklch(19% 0.005 133);       /* subtle sage-dark hairline */
+  --border-sage:  oklch(38% 0.030 133);       /* muted sage border / separator */
 
   /* ── Text ───────────────────────────────────────── */
-  --ink:          oklch(93% 0.008 65);        /* warm off-white – primary text */
-  --ink-muted:    oklch(63% 0.014 65);        /* warm medium gray – descriptions */
-  --ink-dim:      oklch(28% 0.006 65);        /* dim – decorative / ghost text */
+  --ink:          oklch(93% 0.008 133);       /* sage off-white – primary text */
+  --ink-muted:    oklch(63% 0.014 133);       /* sage medium gray – descriptions */
+  --ink-dim:      oklch(28% 0.006 133);       /* dim – decorative / ghost text */
 
-  /* ── Gold accent ─────────────────────────────────── */
-  --gold:         oklch(71% 0.115 65);        /* antique gold – primary accent */
-  --gold-bright:  oklch(79% 0.13 65);         /* hover / highlight */
-  --gold-dim:     oklch(48% 0.085 65);        /* dimmed for borders / fills */
+  /* ── Desert Sage accent ──────────────────────────── */
+  --sage:         oklch(67% 0.055 133);       /* PANTONE Desert Sage – primary accent */
+  --sage-bright:  oklch(74% 0.065 133);       /* hover / highlight */
+  --sage-dim:     oklch(46% 0.040 133);       /* dimmed for borders / fills */
 }
 
 @theme inline {
@@ -38,7 +38,7 @@ body {
 }
 
 ::selection {
-  background: var(--gold);
+  background: var(--sage);
   color: var(--bg);
 }
 

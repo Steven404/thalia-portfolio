@@ -47,7 +47,7 @@ export default function ClassesContent({
           >
             {headline1}
             <br />
-            <em style={{ color: "var(--gold)", fontStyle: "italic" }}>{headline2}</em>
+            <em style={{ color: "var(--sage)", fontStyle: "italic" }}>{headline2}</em>
           </h2>
 
           <p
@@ -64,11 +64,11 @@ export default function ClassesContent({
         </div>
 
         {/* Divider: scaleX from left */}
-        <div className="mt-8 h-px w-full overflow-hidden" style={{ background: "var(--border)" }}>
+        <div className="mt-8 h-px w-full overflow-hidden" style={{ background: "oklch(22% 0.008 133)" }}>
           <div
             style={{
               height: "100%",
-              background: `linear-gradient(to right, var(--gold-dim), var(--border))`,
+              background: `linear-gradient(to right, var(--sage), oklch(22% 0.008 133))`,
               transformOrigin: "left",
               transform: headerIn ? "scaleX(1)" : "scaleX(0)",
               transition: `transform 900ms 200ms ${EXPO}`,
@@ -81,7 +81,7 @@ export default function ClassesContent({
       <div
         ref={gridRef}
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px"
-        style={{ background: "var(--border)" }}
+        style={{ background: "oklch(22% 0.008 133)" }}
       >
         {levels.map((level, i) => (
           <LevelCard key={level.code} level={level} index={i} inView={gridIn} />
@@ -92,7 +92,7 @@ export default function ClassesContent({
       <p
         className="mt-10 text-xs text-center leading-relaxed"
         style={{
-          color: "var(--ink-dim)",
+          color: "var(--sage-dim)",
           opacity: gridIn ? 1 : 0,
           transition: `opacity 600ms ${(levels.length - 1) * 60 + 420}ms ${EXPO}`,
         }}

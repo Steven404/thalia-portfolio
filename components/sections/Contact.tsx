@@ -40,7 +40,7 @@ export default async function Contact() {
           fontFamily: "var(--font-playfair), Playfair Display, serif",
           fontSize: "clamp(200px, 30vw, 400px)",
           color: "transparent",
-          WebkitTextStroke: "1px oklch(71% 0.115 65 / 0.08)",
+          WebkitTextStroke: "1px oklch(67% 0.055 133 / 0.12)",
           fontStyle: "italic",
           fontWeight: 900,
         }}
@@ -65,16 +65,16 @@ export default async function Contact() {
           >
             {t("headline1")}
             <br />
-            <em style={{ color: "var(--gold-bright)", fontStyle: "italic" }}>
+            <em style={{ color: "var(--sage-bright)", fontStyle: "italic" }}>
               {t("headline2")}
             </em>
           </h2>
         </div>
 
-        {/* Contact cards — gold hairline separators */}
+        {/* Contact cards — sage hairline separators */}
         <div
           className="grid grid-cols-1 md:grid-cols-3 gap-px"
-          style={{ background: "var(--border-gold)" }}
+          style={{ background: "oklch(38% 0.030 133)" }}
         >
           {contactItems.map((item) => (
             <ContactCard key={item.icon} item={item} />
@@ -84,7 +84,7 @@ export default async function Contact() {
         {/* Footer strip */}
         <div
           className="mt-16 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
-          style={{ borderTop: "1px solid var(--border)" }}
+          style={{ borderTop: "1px solid oklch(28% 0.010 133)" }}
         >
           <span
             className="text-xs tracking-[0.2em] uppercase"
@@ -96,7 +96,7 @@ export default async function Contact() {
             className="text-xs italic"
             style={{
               fontFamily: "var(--font-playfair), Playfair Display, serif",
-              color: "var(--gold-dim)",
+              color: "var(--sage-dim)",
             }}
           >
             &ldquo;{t("footer_quote")}&rdquo;

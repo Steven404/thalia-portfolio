@@ -12,7 +12,7 @@ export default function Navbar() {
     <nav className="relative z-10 flex items-center justify-between px-8 py-8 md:px-16">
       <span
         className="text-sm font-medium tracking-[0.2em] uppercase animate-fade-in"
-        style={{ color: "var(--gold)", animationDelay: "0s" }}
+        style={{ color: "var(--sage)", animationDelay: "0s" }}
       >
         {t("name")}
       </span>
@@ -27,7 +27,7 @@ export default function Navbar() {
             href="#classes"
             className="transition-colors cursor-pointer"
             style={{ color: "var(--ink-muted)" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--gold)")}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--sage)")}
             onMouseLeave={(e) => (e.currentTarget.style.color = "var(--ink-muted)")}
           >
             {t("classes")}
@@ -36,7 +36,7 @@ export default function Navbar() {
             href="#contact"
             className="transition-colors cursor-pointer"
             style={{ color: "var(--ink-muted)" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--gold)")}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--sage)")}
             onMouseLeave={(e) => (e.currentTarget.style.color = "var(--ink-muted)")}
           >
             {t("contact")}
@@ -52,20 +52,20 @@ export default function Navbar() {
             locale="en"
             className="transition-colors px-1 py-0.5"
             style={{
-              color: locale === "en" ? "var(--gold)" : "var(--ink-dim)",
-              borderBottom: locale === "en" ? "1px solid var(--gold)" : "1px solid transparent",
+              color: locale === "en" ? "var(--sage)" : "var(--ink-dim)",
+              borderBottom: locale === "en" ? "1px solid var(--sage)" : "1px solid transparent",
             }}
           >
             EN
           </Link>
-          <span style={{ color: "var(--ink-dim)" }}>/</span>
+          <span style={{ color: "var(--sage-dim)" }}>/</span>
           <Link
             href={pathname}
             locale="el"
             className="transition-colors px-1 py-0.5"
             style={{
-              color: locale === "el" ? "var(--gold)" : "var(--ink-dim)",
-              borderBottom: locale === "el" ? "1px solid var(--gold)" : "1px solid transparent",
+              color: locale === "el" ? "var(--sage)" : "var(--ink-dim)",
+              borderBottom: locale === "el" ? "1px solid var(--sage)" : "1px solid transparent",
             }}
           >
             ΕΛ

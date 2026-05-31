@@ -43,10 +43,10 @@ export default function LevelCard({ level, index = 0, inView = true }: LevelCard
       {/* Level code + fill bar */}
       <div className="flex items-start justify-between mb-6">
         <span
-          className="text-5xl font-black leading-none transition-colors duration-200 group-hover:text-[var(--gold)]"
+          className="text-5xl font-black leading-none transition-colors duration-200 group-hover:text-[var(--sage)]"
           style={{
             fontFamily: "var(--font-playfair), Playfair Display, serif",
-            color: "var(--ink)",
+            color: "oklch(87% 0.018 133)",
             letterSpacing: "-0.03em",
           }}
         >
@@ -56,12 +56,12 @@ export default function LevelCard({ level, index = 0, inView = true }: LevelCard
         {/* Animated proficiency bar */}
         <div
           className="mt-2 rounded-full overflow-hidden"
-          style={{ width: 48, height: 3, background: "var(--border)" }}
+          style={{ width: 48, height: 3, background: "oklch(22% 0.008 133)" }}
         >
           <div
             className="h-full rounded-full"
             style={{
-              background: "var(--gold)",
+              background: "var(--sage)",
               transformOrigin: "left",
               transform: inView ? `scaleX(${level.fill / 100})` : "scaleX(0)",
               transition: `transform 700ms ${barDelay}ms ${EXPO}`,
@@ -71,8 +71,8 @@ export default function LevelCard({ level, index = 0, inView = true }: LevelCard
       </div>
 
       <p
-        className="mb-2 text-xs font-semibold tracking-widest uppercase transition-colors duration-200 group-hover:text-[var(--gold)]"
-        style={{ color: "var(--ink-dim)" }}
+        className="mb-2 text-xs font-semibold tracking-widest uppercase transition-colors duration-200 group-hover:text-[var(--sage)]"
+        style={{ color: "var(--sage-dim)" }}
       >
         {level.name}
       </p>
@@ -86,8 +86,8 @@ export default function LevelCard({ level, index = 0, inView = true }: LevelCard
 
       {/* Hover reveal arrow */}
       <div className="mt-6 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-        <div className="h-px flex-1" style={{ background: "var(--border-gold)" }} />
-        <span className="text-xs" style={{ color: "var(--gold)" }}>→</span>
+        <div className="h-px flex-1" style={{ background: "var(--border-sage)" }} />
+        <span className="text-xs" style={{ color: "var(--sage)" }}>→</span>
       </div>
     </div>
   );
