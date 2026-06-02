@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Navbar from "@/components/ui/Navbar";
 
@@ -11,38 +12,63 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col justify-between overflow-hidden"
       style={{ background: "var(--bg)" }}
     >
-      {/* Decorative ghost letter */}
+      {/* Logo brand mark — positioned right, replaces the ghost letter */}
       <div
-        className="pointer-events-none absolute -right-8 top-1/2 -translate-y-1/2 select-none leading-none"
+        className="pointer-events-none absolute select-none hidden lg:block"
         style={{
-          fontFamily: "var(--font-playfair), Playfair Display, serif",
-          fontSize: "clamp(280px, 35vw, 520px)",
-          color: "transparent",
-          WebkitTextStroke: "1.5px oklch(67% 0.055 133 / 0.28)",
-          fontStyle: "italic",
-          fontWeight: 900,
+          right: "clamp(24px, 4vw, 80px)",
+          top: "50%",
+          transform: "translateY(-50%)",
         }}
         aria-hidden
       >
-        E
+        <Image
+          src="/logo.png"
+          alt=""
+          width={1000}
+          height={1000}
+          priority
+          style={{
+            width: "clamp(400px, 38vw, 1000px)",
+            height: "auto",
+          }}
+        />
       </div>
 
       <Navbar />
 
       {/* Hero content */}
-      <div className="relative z-10 flex flex-col justify-center flex-1 px-8 md:px-16 pb-24 max-w-5xl">
-        <p
-          className="mb-6 text-xs font-medium tracking-[0.3em] uppercase animate-fade-up delay-100"
+      <div className="relative z-10 flex flex-col justify-center flex-1 px-8 md:px-16 pb-24 max-w-5xl lg:w-[60%]">
+
+        {/* Logo — mobile only, signature after CTAs */}
+        <div className="mt-4 lg:hidden animate-fade-in delay-500">
+          <Image
+            src="/logo.png"
+            alt="English Lessons by Thalia Kiosi"
+            width={0}
+            height={0}
+            sizes="100vw"
+            priority
+            style={{
+              width: "100vw",
+              height: "auto",
+              opacity: 0.85,
+            }}
+          />
+        </div>
+
+        {/* <p
+          className="mb-6 text-xl font-medium tracking-[0.3em] uppercase animate-fade-up delay-100"
           style={{ color: "var(--sage)" }}
         >
           {t("eyebrow")}
-        </p>
+        </p> */}
 
         <h1
-          className="animate-fade-up delay-200 leading-[1.05] mb-8"
+          className="animate-fade-up delay-200 leading-[1.05] mb-8 max-lg:mt-10"
           style={{
             fontFamily: "var(--font-playfair), Playfair Display, serif",
-            fontSize: "clamp(36px, 6vw, 76px)",
+            fontSize: "clamp(36px, 5.5vw, 72px)",
             color: "var(--ink)",
             fontWeight: 800,
             textWrap: "balance",
@@ -51,12 +77,12 @@ export default function Hero() {
         >
           {t("headline1")}
           <br />
-          <em style={{ color: "var(--sage-bright)", fontStyle: "italic" }}>
+          <em style={{ color: "var(--sage)", fontStyle: "italic" }}>
             {t("headline2")}
           </em>
         </h1>
 
-        <div className="max-w-xl flex flex-col gap-4 animate-fade-up delay-300">
+        <div className="max-w-3xl flex flex-col gap-4 animate-fade-up delay-300 text-justify">
           <p
             className="text-sm md:text-base leading-relaxed"
             style={{ color: "var(--ink-muted)", fontWeight: 400 }}
@@ -75,6 +101,12 @@ export default function Hero() {
           >
             {t("description3")}
           </p>
+          <p
+            className="text-sm md:text-base leading-relaxed"
+            style={{ color: "var(--ink-muted)", fontWeight: 300 }}
+          >
+            {t("description4")}
+          </p>
         </div>
 
         <div className="mt-10 flex flex-col sm:flex-row gap-4 animate-fade-up delay-400">
@@ -82,12 +114,20 @@ export default function Hero() {
             href="#contact"
             className="inline-flex items-center justify-center px-8 py-4 text-sm font-medium tracking-wide transition-all duration-300"
             style={{
-              background: "var(--sage)",
-              color: "var(--bg)",
-              borderRadius: "2px",
+              background: "var(--sage-bright)",
+              color: "var(--ink)",
+              borderRadius: "10px",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "var(--sage-bright)")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "var(--sage)")}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "oklch(70% 0.072 145)";
+              e.currentTarget.style.transform = "translateY(-1px)";
+              e.currentTarget.style.boxShadow = "0 4px 18px oklch(46% 0.085 145 / 0.20)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "var(--sage-bright)";
+              e.currentTarget.style.transform = "";
+              e.currentTarget.style.boxShadow = "";
+            }}
           >
             {t("cta_primary")}
           </a>
@@ -95,22 +135,25 @@ export default function Hero() {
             href="#classes"
             className="inline-flex items-center justify-center px-8 py-4 text-sm font-medium tracking-wide transition-all duration-300"
             style={{
-              border: "1px solid var(--border-sage)",
-              color: "var(--ink)",
-              borderRadius: "2px",
+              border: "1.5px solid var(--border-sage)",
+              color: "var(--ink-muted)",
+              borderRadius: "10px",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = "var(--sage)";
-              e.currentTarget.style.color = "var(--sage-bright)";
+              e.currentTarget.style.color = "var(--ink)";
+              e.currentTarget.style.transform = "translateY(-1px)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.borderColor = "var(--border-sage)";
-              e.currentTarget.style.color = "var(--ink)";
+              e.currentTarget.style.color = "var(--ink-muted)";
+              e.currentTarget.style.transform = "";
             }}
           >
             {t("cta_secondary")}
           </a>
         </div>
+
       </div>
 
       {/* Bottom level rail */}

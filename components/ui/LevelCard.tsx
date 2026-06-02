@@ -29,24 +29,27 @@ export default function LevelCard({ level, index = 0, inView = true }: LevelCard
           `opacity 600ms ${cardDelay}ms ${EXPO}`,
           `transform 600ms ${cardDelay}ms ${EXPO}`,
           "background-color 250ms ease",
+          "box-shadow 250ms ease",
         ].join(", "),
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.background = "var(--surface-hover)";
         e.currentTarget.style.transform   = "translateY(-3px)";
+        e.currentTarget.style.boxShadow   = "0 4px 20px oklch(46% 0.085 145 / 0.10)";
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.background = "var(--surface-card)";
         e.currentTarget.style.transform   = "translateY(0)";
+        e.currentTarget.style.boxShadow   = "";
       }}
     >
       {/* Level code + fill bar */}
       <div className="flex items-start justify-between mb-6">
         <span
-          className="text-5xl font-black leading-none transition-colors duration-200 group-hover:text-[var(--sage)]"
+          className="text-5xl font-black leading-none transition-colors duration-200 group-hover:text-(--sage)"
           style={{
             fontFamily: "var(--font-playfair), Playfair Display, serif",
-            color: "oklch(87% 0.018 133)",
+            color: "var(--ink)",
             letterSpacing: "-0.03em",
           }}
         >
@@ -56,12 +59,12 @@ export default function LevelCard({ level, index = 0, inView = true }: LevelCard
         {/* Animated proficiency bar */}
         <div
           className="mt-2 rounded-full overflow-hidden"
-          style={{ width: 48, height: 3, background: "oklch(22% 0.008 133)" }}
+          style={{ width: 48, height: 3, background: "var(--border)" }}
         >
           <div
             className="h-full rounded-full"
             style={{
-              background: "var(--sage)",
+              background: "var(--sage-bright)",
               transformOrigin: "left",
               transform: inView ? `scaleX(${level.fill / 100})` : "scaleX(0)",
               transition: `transform 700ms ${barDelay}ms ${EXPO}`,
@@ -71,8 +74,8 @@ export default function LevelCard({ level, index = 0, inView = true }: LevelCard
       </div>
 
       <p
-        className="mb-2 text-xs font-semibold tracking-widest uppercase transition-colors duration-200 group-hover:text-[var(--sage)]"
-        style={{ color: "var(--sage-dim)" }}
+        className="mb-2 text-xs font-semibold tracking-widest uppercase transition-colors duration-200 group-hover:text-(--sage)"
+        style={{ color: "var(--sage)" }}
       >
         {level.name}
       </p>

@@ -57,7 +57,7 @@ export default function Navbar() {
     <>
       <nav className="relative z-10 flex items-center justify-between px-8 py-8 md:px-16">
         <span
-          className="text-sm font-medium tracking-[0.2em] uppercase animate-fade-in"
+          className="text-md font-medium tracking-[0.2em] uppercase animate-fade-in"
           style={{ color: "var(--sage)", animationDelay: "0s" }}
         >
           {t("name")}
@@ -149,7 +149,7 @@ export default function Navbar() {
           {/* Backdrop */}
           <div
             className="absolute inset-0"
-            style={{ background: "oklch(4% 0.003 133 / 0.92)", backdropFilter: "blur(12px)" }}
+            style={{ background: "oklch(97.5% 0.017 75 / 0.96)", backdropFilter: "blur(16px)" }}
             onClick={closeMenu}
           />
 
@@ -161,13 +161,13 @@ export default function Navbar() {
             }}
           >
             {/* Header row */}
-            <div className="flex items-center justify-between">
-              <span
+            <div className="flex items-center justify-end">
+              {/* <span
                 className="text-sm font-medium tracking-[0.2em] uppercase"
                 style={{ color: "var(--sage)" }}
               >
                 {t("name")}
-              </span>
+              </span> */}
 
               {/* Close button */}
               <button
@@ -210,7 +210,7 @@ export default function Navbar() {
                   href={href}
                   className="py-4 text-3xl font-light tracking-wide transition-colors"
                   style={{
-                    color: "var(--ink-muted)",
+                    color: "var(--sage)",
                     borderBottom: "1px solid var(--border)",
                     animationDelay: `${0.06 * i}s`,
                   }}

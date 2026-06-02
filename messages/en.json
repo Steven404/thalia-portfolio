@@ -1,6 +1,6 @@
 {
   "nav": {
-    "name": "Thalia",
+    "name": "Thalia Kiosi - English Language & Literature BA AUTH",
     "classes": "Classes",
     "philosophy": "Philosophy",
     "why": "Why English",
@@ -81,19 +81,12 @@
     "eyebrow": "Get in touch",
     "headline1": "Let's start your",
     "headline2": "language journey.",
-    "phone": {
-      "label": "Phone",
-      "subtitle": "Mon–Fri, 9am–7pm"
-    },
+    "body": "The easiest way to reach me is by email. Tell me a little about your level and what you are hoping to achieve, and I will get back to you within a day.",
     "email": {
       "label": "Email",
       "subtitle": "I reply within 24 hours"
     },
-    "instagram": {
-      "label": "Instagram",
-      "subtitle": "Tips, resources & updates"
-    },
-    "footer_copy": "© 2026 Thalia — Private English Teacher",
+    "footer_copy": "© 2026 Thalia Kiosi — Private English Teacher",
     "footer_quote": "The limits of my language are the limits of my world."
   }
 }

@@ -22,7 +22,7 @@ export default function PhilosophyContent({ eyebrow, headline1, headline2, body1
       {/* ── Section header ─────────────────────────── */}
       <div ref={headerRef} className="mb-20">
         <p
-          className="mb-6 text-xs font-medium tracking-[0.3em] uppercase"
+          className="mb-6 text-md font-medium tracking-[0.3em] uppercase"
           style={{
             color: "var(--sage)",
             opacity: headerIn ? 1 : 0,
@@ -53,7 +53,7 @@ export default function PhilosophyContent({ eyebrow, headline1, headline2, body1
         </h2>
 
         {/* Divider: scaleX from left */}
-        <div className="mt-8 h-px w-full overflow-hidden" style={{ background: "oklch(22% 0.008 133)" }}>
+        <div className="mt-8 h-px w-full overflow-hidden" style={{ background: "var(--border)" }}>
           <div
             style={{
               height: "100%",
@@ -90,15 +90,15 @@ export default function PhilosophyContent({ eyebrow, headline1, headline2, body1
             transition: `opacity 700ms 130ms ${EXPO}, transform 700ms 130ms ${EXPO}`,
           }}
         >
-          {/* Subtle left accent on second paragraph */}
-          <div
-            className="pl-6"
-            style={{ borderLeft: "2px solid oklch(67% 0.055 133 / 0.35)" }}
+          <p
+            className="text-base leading-loose"
+            style={{
+              color: "var(--ink-muted)",
+              paddingTop: "0.25rem",
+            }}
           >
-            <p className="text-base leading-loose" style={{ color: "var(--ink-muted)" }}>
-              {body2}
-            </p>
-          </div>
+            {body2}
+          </p>
         </div>
       </div>
 

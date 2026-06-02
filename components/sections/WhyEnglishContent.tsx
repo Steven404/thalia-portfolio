@@ -42,7 +42,7 @@ export default function WhyEnglishContent({
       {/* ── Section header ─────────────────────────── */}
       <div ref={headerRef} className="mb-20">
         <p
-          className="mb-6 text-xs font-medium tracking-[0.3em] uppercase"
+          className="mb-6 text-md font-medium tracking-[0.3em] uppercase"
           style={{
             color: "var(--sage)",
             opacity: headerIn ? 1 : 0,
@@ -70,7 +70,7 @@ export default function WhyEnglishContent({
           >
             {headline1}
             <br />
-            <em style={{ color: "var(--sage-bright)", fontStyle: "italic" }}>{headline2}</em>
+            <em style={{ color: "var(--sage)", fontStyle: "italic" }}>{headline2}</em>
           </h2>
 
           <p
@@ -87,11 +87,11 @@ export default function WhyEnglishContent({
         </div>
 
         {/* Divider */}
-        <div className="mt-8 h-px w-full overflow-hidden" style={{ background: "oklch(22% 0.008 133)" }}>
+        <div className="mt-8 h-px w-full overflow-hidden" style={{ background: "var(--border)" }}>
           <div
             style={{
               height: "100%",
-              background: `linear-gradient(to right, var(--sage), oklch(22% 0.008 133))`,
+              background: `linear-gradient(to right, var(--sage), var(--border))`,
               transformOrigin: "left",
               transform: headerIn ? "scaleX(1)" : "scaleX(0)",
               transition: `transform 900ms 200ms ${EXPO}`,
@@ -115,8 +115,8 @@ export default function WhyEnglishContent({
         </p>
 
         <div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px"
-          style={{ background: "oklch(17% 0.006 133)" }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px rounded-[10px] overflow-hidden"
+          style={{ background: "var(--border)" }}
         >
           {benefits.map((benefit, i) => (
             <div
@@ -184,7 +184,7 @@ export default function WhyEnglishContent({
       {/* ── Conclusion ──────────────────────────────── */}
       <div ref={conclusionRef}>
         {/* Divider */}
-        <div className="mb-12 h-px w-full overflow-hidden" style={{ background: "oklch(22% 0.008 133)" }}>
+        <div className="mb-12 h-px w-full overflow-hidden" style={{ background: "var(--border)" }}>
           <div
             style={{
               height: "100%",

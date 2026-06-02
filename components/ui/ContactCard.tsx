@@ -72,9 +72,9 @@ export default function ContactCard({ item, index, inView }: ContactCardProps) {
         rel={item.external ? "noopener noreferrer" : undefined}
         className="flex flex-col gap-4 p-6 sm:p-10 relative overflow-hidden"
         style={{
-          background: hovered ? "oklch(10.9% 0.006 133)" : "var(--bg)",
+          background: hovered ? "var(--surface)" : "var(--surface-card)",
           boxShadow: hovered
-            ? "0 12px 40px oklch(67% 0.055 133 / 0.1), 0 2px 8px oklch(0% 0 0 / 0.3)"
+            ? "0 4px 24px oklch(46% 0.085 145 / 0.10)"
             : "none",
           transform: hoverTransform,
           transition: `background 300ms ${EXPO}, box-shadow 300ms ${EXPO}, transform 200ms ${EXPO}`,
@@ -89,10 +89,10 @@ export default function ContactCard({ item, index, inView }: ContactCardProps) {
       >
         {/* Icon badge */}
         <div
-          className="w-10 h-10 flex items-center justify-center rounded-sm"
+          className="w-10 h-10 flex items-center justify-center rounded-lg"
           style={{
-            background: hovered ? "oklch(67% 0.055 133 / 0.15)" : "var(--border)",
-            color: hovered ? "var(--sage-bright)" : "var(--sage)",
+            background: hovered ? "oklch(74% 0.065 145 / 0.20)" : "var(--border-sage)",
+            color: hovered ? "var(--sage)" : "oklch(46% 0.085 145)",
             transition: `background 300ms ${EXPO}, color 300ms ${EXPO}`,
           }}
         >
@@ -102,7 +102,7 @@ export default function ContactCard({ item, index, inView }: ContactCardProps) {
         <div>
           <p
             className="text-xs font-semibold tracking-widest uppercase mb-2"
-            style={{ color: "var(--sage-dim)" }}
+            style={{ color: "var(--sage)" }}
           >
             {item.label}
           </p>
@@ -117,12 +117,12 @@ export default function ContactCard({ item, index, inView }: ContactCardProps) {
           >
             {item.value}
           </p>
-          <p className="mt-1 text-xs" style={{ color: "var(--ink-dim)" }}>
+          <p className="mt-1 text-xs" style={{ color: "var(--ink-muted)" }}>
             {item.subtitle}
           </p>
         </div>
 
-        {/* Diagonal arrow — always visible on touch, slides in on hover for mouse */}
+        {/* Diagonal arrow */}
         <div
           className="absolute bottom-5 right-5 sm:bottom-8 sm:right-8"
           style={{

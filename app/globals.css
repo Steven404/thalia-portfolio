@@ -2,22 +2,22 @@
 
 :root {
   /* ── Core surfaces ──────────────────────────────── */
-  --bg:           oklch(0% 0 0);              /* #000000 – hero / contact ground */
-  --surface:      oklch(10.9% 0.003 133);     /* near-black with micro sage tint – classes */
-  --surface-card: oklch(0% 0 0);              /* cards sit on pure black */
-  --surface-hover:oklch(10.9% 0.003 133);     /* card hover lifts to sage-tinted dark */
-  --border:       oklch(19% 0.005 133);       /* subtle sage-dark hairline */
-  --border-sage:  oklch(38% 0.030 133);       /* muted sage border / separator */
+  --bg:            oklch(97.5% 0.017 75);    /* warm cream ≈ #fff7ee */
+  --surface:       oklch(95% 0.022 145);     /* very pale sage – alternating sections */
+  --surface-card:  oklch(99% 0.008 75);      /* warm near-white cards */
+  --surface-hover: oklch(93% 0.026 145);     /* card hover – deeper sage tint */
+  --border:        oklch(89% 0.016 75);      /* warm light hairline */
+  --border-sage:   oklch(84% 0.038 145);     /* sage accent border */
 
   /* ── Text ───────────────────────────────────────── */
-  --ink:          oklch(93% 0.008 133);       /* sage off-white – primary text */
-  --ink-muted:    oklch(63% 0.014 133);       /* sage medium gray – descriptions */
-  --ink-dim:      oklch(28% 0.006 133);       /* dim – decorative / ghost text */
+  --ink:           oklch(27% 0.016 133);     /* near-black, sage tinted ≥10:1 on cream */
+  --ink-muted:     oklch(44% 0.016 133);     /* readable body text ≥5:1 on cream */
+  --ink-dim:       oklch(63% 0.014 133);     /* muted decorative */
 
-  /* ── Desert Sage accent ──────────────────────────── */
-  --sage:         oklch(67% 0.055 133);       /* PANTONE Desert Sage – primary accent */
-  --sage-bright:  oklch(74% 0.065 133);       /* hover / highlight */
-  --sage-dim:     oklch(46% 0.040 133);       /* dimmed for borders / fills */
+  /* ── Sage accent — brand #93bd96 family ──────────── */
+  --sage:          oklch(46% 0.085 145);     /* dark sage for text — ≥4.5:1 on cream */
+  --sage-bright:   oklch(74% 0.065 145);     /* ≈ #93bd96 – button bg, brand accent */
+  --sage-dim:      oklch(84% 0.038 145);     /* decorative borders/fills only */
 }
 
 @theme inline {
@@ -38,8 +38,8 @@ body {
 }
 
 ::selection {
-  background: var(--sage);
-  color: var(--bg);
+  background: var(--sage-bright);
+  color: var(--ink);
 }
 
 /* ── Animations ─────────────────────────────────────── */
@@ -55,14 +55,12 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  /* Disable all CSS animations and inline transitions site-wide. */
   *, *::before, *::after {
     animation-duration:       0.01ms !important;
     animation-iteration-count: 1     !important;
     transition-duration:      0.01ms !important;
     scroll-behavior:          auto   !important;
   }
-  /* Ensure gated content is always visible (useInView resolves immediately). */
   .animate-fade-up,
   .animate-fade-in {
     animation: none;

@@ -64,11 +64,11 @@ export default function ClassesContent({
         </div>
 
         {/* Divider: scaleX from left */}
-        <div className="mt-8 h-px w-full overflow-hidden" style={{ background: "oklch(22% 0.008 133)" }}>
+        <div className="mt-8 h-px w-full overflow-hidden" style={{ background: "var(--border)" }}>
           <div
             style={{
               height: "100%",
-              background: `linear-gradient(to right, var(--sage), oklch(22% 0.008 133))`,
+              background: `linear-gradient(to right, var(--sage), var(--border))`,
               transformOrigin: "left",
               transform: headerIn ? "scaleX(1)" : "scaleX(0)",
               transition: `transform 900ms 200ms ${EXPO}`,
@@ -80,8 +80,8 @@ export default function ClassesContent({
       {/* ── Level grid ─────────────────────────────── */}
       <div
         ref={gridRef}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px"
-        style={{ background: "oklch(22% 0.008 133)" }}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px rounded-[10px] overflow-hidden"
+        style={{ background: "var(--border)" }}
       >
         {levels.map((level, i) => (
           <LevelCard key={level.code} level={level} index={i} inView={gridIn} />
@@ -90,9 +90,9 @@ export default function ClassesContent({
 
       {/* Footnote fades in after the last card */}
       <p
-        className="mt-10 text-sm text-center leading-relaxed"
+        className="mt-10 text-xl text-center leading-relaxed font-semibold"
         style={{
-          color: "var(--sage-dim)",
+          color: "var(--ink-muted)",
           opacity: gridIn ? 1 : 0,
           transition: `opacity 600ms ${(levels.length - 1) * 60 + 420}ms ${EXPO}`,
         }}

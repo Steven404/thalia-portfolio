@@ -17,7 +17,7 @@ export default async function Philosophy() {
           fontFamily: "var(--font-playfair), Playfair Display, serif",
           fontSize: "clamp(180px, 26vw, 360px)",
           color: "transparent",
-          WebkitTextStroke: "1px oklch(67% 0.055 133 / 0.10)",
+          WebkitTextStroke: "1px oklch(46% 0.085 145 / 0.06)",
           fontStyle: "italic",
           fontWeight: 900,
         }}

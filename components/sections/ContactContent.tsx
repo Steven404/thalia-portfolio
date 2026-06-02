@@ -1,40 +1,76 @@
 "use client";
 
+import { useState } from "react";
 import { useInView } from "@/hooks/useInView";
-import ContactCard from "@/components/ui/ContactCard";
 import type { ContactItem } from "@/lib/data";
 
 interface Props {
   headline1: string;
   headline2: string;
+  body: string;
   footerCopy: string;
   footerQuote: string;
-  contactItems: ContactItem[];
+  contactItem: ContactItem;
 }
 
 const EXPO = "cubic-bezier(0.16, 1, 0.3, 1)";
 
+const EmailIcon = () => (
+  <svg
+    width="26"
+    height="26"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden
+  >
+    <rect width="20" height="16" x="2" y="4" rx="2" />
+    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+  </svg>
+);
+
+const ArrowDiagIcon = () => (
+  <svg
+    width="22"
+    height="22"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden
+  >
+    <path d="M7 17L17 7M17 7H7M17 7v10" />
+  </svg>
+);
+
 export default function ContactContent({
   headline1,
   headline2,
+  body,
   footerCopy,
   footerQuote,
-  contactItems,
+  contactItem,
 }: Props) {
   const { ref: headerRef, inView: headerIn } = useInView(0.2);
-  const { ref: gridRef, inView: gridIn } = useInView(0.06);
+  const { ref: blockRef, inView: blockIn } = useInView(0.15);
   const { ref: footerRef, inView: footerIn } = useInView(0.15);
+  const [hovered, setHovered] = useState(false);
 
   return (
     <>
-      {/* Decorative background glyph — atmospheric entrance */}
+      {/* Decorative background glyph */}
       <div
         className="pointer-events-none absolute -left-20 -bottom-20 select-none leading-none"
         style={{
           fontFamily: "var(--font-playfair), Playfair Display, serif",
           fontSize: "clamp(100px, 28vw, 400px)",
           color: "transparent",
-          WebkitTextStroke: "1px oklch(67% 0.055 133 / 0.12)",
+          WebkitTextStroke: "1px oklch(46% 0.085 145 / 0.07)",
           fontStyle: "italic",
           fontWeight: 900,
           opacity: headerIn ? 1 : 0,
@@ -49,7 +85,7 @@ export default function ContactContent({
       <div className="relative z-10 max-w-6xl mx-auto">
 
         {/* ── Header ─────────────────────────────────── */}
-        <div ref={headerRef} className="mb-10 md:mb-20">
+        <div ref={headerRef} className="mb-10 md:mb-16">
           <h2
             className="leading-tight"
             style={{
@@ -68,7 +104,7 @@ export default function ContactContent({
             <br />
             <em
               style={{
-                color: "var(--sage-bright)",
+                color: "var(--sage)",
                 fontStyle: "italic",
                 display: "inline-block",
                 transform: headerIn ? "translateY(0)" : "translateY(14px)",
@@ -79,32 +115,111 @@ export default function ContactContent({
             </em>
           </h2>
 
-          {/* Divider: scaleX from left */}
+          {/* Divider */}
           <div
             className="mt-8 h-px w-full overflow-hidden"
-            style={{ background: "oklch(22% 0.008 133)" }}
+            style={{ background: "var(--border)" }}
           >
             <div
               style={{
                 height: "100%",
-                background: `linear-gradient(to right, var(--sage), oklch(22% 0.008 133))`,
+                background: `linear-gradient(to right, var(--sage), var(--border))`,
                 transformOrigin: "left",
                 transform: headerIn ? "scaleX(1)" : "scaleX(0)",
                 transition: `transform 900ms 200ms ${EXPO}`,
               }}
             />
           </div>
+
+          {/* Intro body */}
+          <p
+            className="mt-8 max-w-xl text-base leading-relaxed"
+            style={{
+              color: "var(--ink-muted)",
+              opacity: headerIn ? 1 : 0,
+              transform: headerIn ? "translateY(0)" : "translateY(14px)",
+              transition: `opacity 700ms 300ms ${EXPO}, transform 700ms 300ms ${EXPO}`,
+            }}
+          >
+            {body}
+          </p>
         </div>
 
-        {/* ── Contact cards — staggered entrance ─────── */}
+        {/* ── Email contact block ─────────────────────── */}
         <div
-          ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-3 gap-px"
-          style={{ background: "oklch(38% 0.030 133)" }}
+          ref={blockRef}
+          style={{
+            opacity: blockIn ? 1 : 0,
+            transform: blockIn ? "translateY(0)" : "translateY(20px)",
+            transition: `opacity 700ms ${EXPO}, transform 700ms ${EXPO}`,
+          }}
         >
-          {contactItems.map((item, i) => (
-            <ContactCard key={item.icon} item={item} index={i} inView={gridIn} />
-          ))}
+          <a
+            href={contactItem.href}
+            aria-label={`Send an email to ${contactItem.value}`}
+            className="flex items-center justify-between gap-6 px-8 py-10 md:px-12 md:py-12 rounded-2xl"
+            style={{
+              background: hovered ? "var(--surface-hover)" : "var(--surface)",
+              transition: `background 300ms ${EXPO}`,
+            }}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+          >
+            {/* Left: icon badge + contact info */}
+            <div className="flex items-center gap-6 md:gap-8 min-w-0">
+              <div
+                className="shrink-0 flex items-center justify-center rounded-xl"
+                style={{
+                  width: 56,
+                  height: 56,
+                  background: hovered
+                    ? "oklch(74% 0.065 145 / 0.25)"
+                    : "oklch(74% 0.065 145 / 0.15)",
+                  color: "var(--sage)",
+                  transition: `background 300ms ${EXPO}`,
+                }}
+              >
+                <EmailIcon />
+              </div>
+
+              <div className="min-w-0">
+                <p
+                  className="text-xs font-semibold tracking-widest uppercase mb-1"
+                  style={{ color: "var(--sage)" }}
+                >
+                  {contactItem.label}
+                </p>
+                <p
+                  className="font-semibold truncate"
+                  style={{
+                    fontSize: "clamp(17px, 2.2vw, 26px)",
+                    color: hovered ? "var(--sage)" : "var(--ink)",
+                    transition: `color 300ms ${EXPO}`,
+                  }}
+                >
+                  {contactItem.value}
+                </p>
+                <p
+                  className="mt-1 text-sm"
+                  style={{ color: "var(--ink-muted)" }}
+                >
+                  {contactItem.subtitle}
+                </p>
+              </div>
+            </div>
+
+            {/* Right: arrow */}
+            <div
+              className="shrink-0"
+              style={{
+                color: "var(--sage)",
+                transform: hovered ? "translate(3px, -3px)" : "translate(0, 0)",
+                transition: `transform 250ms ${EXPO}`,
+              }}
+            >
+              <ArrowDiagIcon />
+            </div>
+          </a>
         </div>
 
         {/* ── Footer strip ───────────────────────────── */}
@@ -112,7 +227,7 @@ export default function ContactContent({
           ref={footerRef}
           className="mt-10 md:mt-16 pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
           style={{
-            borderTop: "1px solid oklch(28% 0.010 133)",
+            borderTop: "1px solid var(--border)",
             opacity: footerIn ? 1 : 0,
             transform: footerIn ? "translateY(0)" : "translateY(12px)",
             transition: `opacity 600ms ${EXPO}, transform 600ms ${EXPO}`,
@@ -128,7 +243,7 @@ export default function ContactContent({
             className="text-xs italic"
             style={{
               fontFamily: "var(--font-playfair), Playfair Display, serif",
-              color: "var(--sage-dim)",
+              color: "var(--sage)",
               opacity: footerIn ? 1 : 0,
               transition: `opacity 600ms 120ms ${EXPO}`,
             }}
@@ -147,7 +262,7 @@ export default function ContactContent({
         >
           <span
             className="text-xs tracking-[0.12em]"
-            style={{ color: "oklch(42% 0.012 133)" }}
+            style={{ color: "var(--ink-dim)" }}
           >
             Designed &amp; Developed by{" "}
             <a
@@ -156,12 +271,12 @@ export default function ContactContent({
               rel="noopener noreferrer"
               title="Στέφανος Μιχελάκης"
               style={{
-                color: "var(--sage-dim)",
+                color: "var(--sage)",
                 textUnderlineOffset: "3px",
-                textDecorationColor: "oklch(55% 0.08 133 / 0.5)",
-                transition: "color 300ms ease, text-decoration-color 300ms ease",
+                textDecorationColor: "oklch(46% 0.085 145 / 0.4)",
+                transition: "color 300ms ease",
               }}
-              className="underline decoration-1 hover:text-(--sage-bright)"
+              className="underline decoration-1 hover:text-foreground"
             >
               Stefanos Michelakis
             </a>
