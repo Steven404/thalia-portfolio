@@ -1,4 +1,8 @@
 {
+  "metadata": {
+    "title": "Thalia Kiosi — Private English Teacher",
+    "description": "Private English lessons for all levels, from A1 to C2. Personalised, effective, and engaging."
+  },
   "nav": {
     "name": "Thalia Kiosi - English Language & Literature BA AUTH",
     "classes": "Classes",
@@ -11,8 +15,9 @@
     "headline1": "Your English Learning",
     "headline2": "Journey Starts Here.",
     "description1": "My name is Thalia, and I am an English teacher holding a Bachelor's Degree in English Language and Literature from Aristotle University of Thessaloniki.",
-    "description2": "Teaching is much more than a profession for me, it is my passion. Sharing knowledge, inspiring confidence, and helping learners discover the joy of learning are at the heart of my teaching philosophy. Every student is unique, which is why I offer personalized lessons tailored to individual goals, needs, learning styles, and abilities.",
-    "description3": "I provide both online and in-person lessons, creating a flexible learning environment that allows students to progress comfortably and effectively, wherever they are.",
+    "description2": "possess a track record of teaching English, with extensive experience leading classroom instruction and one-on-one lessons for learners of all ages and levels",
+    "description3": "Teaching is much more than a profession for me, it is my passion. Sharing knowledge, inspiring confidence, and helping learners discover the joy of learning are at the heart of my teaching philosophy. Every student is unique, which is why I offer personalized lessons tailored to individual goals, needs, learning styles, and abilities.",
+    "description4": "I provide both online and in-person lessons, creating a flexible learning environment that allows students to progress comfortably and effectively, wherever they are.",
     "cta_primary": "Get in touch",
     "cta_secondary": "View classes"
   },

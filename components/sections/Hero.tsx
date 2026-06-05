@@ -6,6 +6,8 @@ import { useTranslations } from "next-intl";
 export default function Hero() {
   const t = useTranslations("hero");
 
+
+  // TODO: Find way to calculate header height and remove it from the min-h-screen size
   return (
     <section
       className="relative min-h-screen flex flex-col justify-between overflow-hidden"
