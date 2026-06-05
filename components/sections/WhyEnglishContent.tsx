@@ -32,9 +32,9 @@ export default function WhyEnglishContent({
   conclusionBody2,
   conclusionBody3,
 }: Props) {
-  const { ref: headerRef, inView: headerIn } = useInView(0.25);
-  const { ref: benefitsRef, inView: benefitsIn } = useInView(0.09);
-  const { ref: conclusionRef, inView: conclusionIn } = useInView(0.17);
+  const { ref: headerRef, inView: headerIn } = useInView(0.40);
+  const { ref: benefitsRef, inView: benefitsIn } = useInView(0.025);
+  const { ref: conclusionRef, inView: conclusionIn } = useInView(0.3);
 
   return (
     <div className="max-w-6xl mx-auto">

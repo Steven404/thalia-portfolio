@@ -56,9 +56,9 @@ export default function ContactContent({
   footerQuote,
   contactItem,
 }: Props) {
-  const { ref: headerRef, inView: headerIn } = useInView(0.2);
-  const { ref: blockRef, inView: blockIn } = useInView(0.15);
-  const { ref: footerRef, inView: footerIn } = useInView(0.15);
+  const { ref: headerRef, inView: headerIn } = useInView(0.4);
+  const { ref: blockRef, inView: blockIn } = useInView(0.30);
+  const { ref: footerRef, inView: footerIn } = useInView(0.30);
   const [hovered, setHovered] = useState(false);
 
   return (

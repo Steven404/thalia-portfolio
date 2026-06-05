@@ -57,23 +57,23 @@ export default function Navbar() {
     <>
       <nav className="relative z-10 flex items-center justify-between px-8 py-8 md:px-16">
         <span
-          className="text-md font-medium tracking-[0.2em] uppercase animate-fade-in"
+          className="text-sm lg:text-md font-medium tracking-[0.2em] uppercase animate-fade-in"
           style={{ color: "var(--sage)", animationDelay: "0s" }}
         >
           {t("name")}
         </span>
 
         {/* Desktop: links + locale toggle */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="pl-5 hidden lg:flex items-center gap-4 xl:gap-8">
           <div
-            className="flex gap-8 text-sm animate-fade-in delay-200"
+            className="flex gap-4 xl:gap-8 text-sm animate-fade-in delay-200"
             style={{ color: "var(--ink-muted)" }}
           >
             {navLinks.map(({ href, label }) => (
               <a
                 key={href}
                 href={href}
-                className="transition-colors cursor-pointer"
+                className="transition-colors cursor-pointer whitespace-nowrap"
                 style={{ color: "var(--ink-muted)" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "var(--sage)")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "var(--ink-muted)")}
@@ -112,7 +112,7 @@ export default function Navbar() {
 
         {/* Mobile: hamburger button — hidden while menu is open to avoid ghost-click reopen */}
         <button
-          className={`md:hidden flex flex-col justify-center items-center w-11 h-11 gap-[6px] cursor-pointer ${
+          className={`lg:hidden pl-5 flex flex-col justify-center items-center w-11 h-11 gap-[6px] cursor-pointer ${
             menuOpen ? "pointer-events-none invisible" : ""
           }`}
           onClick={openMenu}
