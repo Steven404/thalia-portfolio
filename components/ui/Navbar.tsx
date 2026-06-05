@@ -12,6 +12,44 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const ignoreOpenRef = useRef(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  const navLinks = [
+    { href: "#classes", label: t("classes"), id: 'classes' },
+    { href: "#philosophy", label: t("philosophy"), id: 'philosophy' },
+    { href: "#why-english", label: t("why"), id: 'why' },
+    { href: "#contact", label: t("contact"), id: 'contact' },
+  ];
+
+  useEffect(() => {
+    const HEADER_HEIGHT = 64;
+
+    const updateActive = () => {
+      const scrollY      = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const docHeight    = document.documentElement.scrollHeight;
+
+      setScrolled(scrollY > 20);
+
+      const sections = navLinks.map(({ id }) => {
+        const el = document.getElementById(id);
+        return { id, top: el ? el.getBoundingClientRect().top + scrollY : Infinity };
+      });
+
+      const nearBottom = scrollY + windowHeight >= docHeight - 4;
+      // if (nearBottom) {
+      //   setActiveSection(sections[sections.length - 1].id);
+      //   return;
+      // }
+
+      // const passed = sections.filter(({ top }) => top <= scrollY + HEADER_HEIGHT + 10);
+      // setActiveSection(passed.length === 0 ? '' : passed[passed.length - 1].id);
+    };
+
+    updateActive();
+    window.addEventListener('scroll', updateActive, { passive: true });
+    return () => window.removeEventListener('scroll', updateActive);
+  }, []);
 
   useEffect(() => setMounted(true), []);
 
@@ -46,16 +84,17 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
-  const navLinks = [
-    { href: "#classes", label: t("classes") },
-    { href: "#philosophy", label: t("philosophy") },
-    { href: "#why-english", label: t("why") },
-    { href: "#contact", label: t("contact") },
-  ];
-
   return (
     <>
-      <nav className="relative z-10 flex items-center justify-between px-8 py-8 md:px-16">
+      <header className="z-50 flex items-center justify-between px-8 py-8 md:px-16 sticky top-0 transition-all duration-300"
+        style={{
+          background: scrolled
+            ? 'rgb(146, 182, 146, 0.5)' // sage-bright with less opacity
+            : 'rgba(0,49,53,0)',
+          backdropFilter: scrolled ? 'blur(14px)' : 'none',
+          borderBottom: scrolled ? '1px solid var(--sage-bright)' : '1px solid transparent',
+        }}
+      >
         <span
           className="text-sm lg:text-md font-medium tracking-[0.2em] uppercase animate-fade-in"
           style={{ color: "var(--sage)", animationDelay: "0s" }}
@@ -95,7 +134,7 @@ export default function Navbar() {
             >
               EN
             </Link>
-            <span style={{ color: "var(--sage-dim)" }}>/</span>
+            <span style={{ color: scrolled ? "var(--sage-bright)" :"var(--sage-dim)" }}>/</span>
             <Link
               href={pathname}
               locale="el"
@@ -133,7 +172,7 @@ export default function Navbar() {
             style={{ background: "var(--ink-muted)" }}
           />
         </button>
-      </nav>
+      </header>
 
       {/* Mobile menu overlay — portaled to body to escape overflow/stacking contexts */}
       {mounted &&

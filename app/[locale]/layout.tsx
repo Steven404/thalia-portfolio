@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import ScrollRestoration from "@/components/ScrollRestoration";
 import "../globals.css";
+import Navbar from "@/components/ui/Navbar";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -49,6 +50,7 @@ export default async function LocaleLayout({
       <body className="min-h-screen">
         <NextIntlClientProvider messages={messages}>
           <ScrollRestoration />
+          <Navbar />
           {children}
         </NextIntlClientProvider>
       </body>

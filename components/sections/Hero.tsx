@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import Navbar from "@/components/ui/Navbar";
 
 export default function Hero() {
   const t = useTranslations("hero");
@@ -23,6 +22,7 @@ export default function Hero() {
         aria-hidden
       >
         <Image
+          className="animate-fade-up delay-500"
           src="/logo.png"
           alt=""
           width={1000}
@@ -35,10 +35,8 @@ export default function Hero() {
         />
       </div>
 
-      <Navbar />
-
       {/* Hero content */}
-      <div className="relative z-10 flex flex-col justify-center flex-1 px-8 md:px-16 pb-24 max-w-5xl lg:w-[60%]">
+      <div className="relative z-10 flex flex-col justify-center flex-1 px-8 md:px-16 max-w-5xl lg:w-[60%]">
 
         {/* Logo — mobile only, signature after CTAs */}
         <div className="mt-4 lg:hidden animate-fade-in delay-500">
@@ -51,21 +49,14 @@ export default function Hero() {
             priority
             style={{
               width: "100vw",
-              height: "auto",
+              // height: "auto",
               opacity: 0.85,
             }}
           />
         </div>
 
-        {/* <p
-          className="mb-6 text-xl font-medium tracking-[0.3em] uppercase animate-fade-up delay-100"
-          style={{ color: "var(--sage)" }}
-        >
-          {t("eyebrow")}
-        </p> */}
-
         <h1
-          className="animate-fade-up delay-200 leading-[1.05] mb-8 max-lg:mt-10"
+          className="animate-fade-in delay-100 leading-[1.05] mb-8 max-lg:mt-10"
           style={{
             fontFamily: "var(--font-playfair), Playfair Display, serif",
             fontSize: "clamp(36px, 5.5vw, 72px)",
@@ -82,7 +73,7 @@ export default function Hero() {
           </em>
         </h1>
 
-        <div className="max-w-3xl flex flex-col gap-4 animate-fade-up delay-300 text-justify">
+        <div className="max-w-3xl flex flex-col gap-4 animate-fade-up delay-700 text-justify">
           <p
             className="text-sm md:text-base leading-relaxed"
             style={{ color: "var(--ink-muted)", fontWeight: 400 }}
@@ -109,7 +100,7 @@ export default function Hero() {
           </p>
         </div>
 
-        <div className="mt-10 flex flex-col sm:flex-row gap-4 animate-fade-up delay-400">
+        <div className="mt-10 flex flex-col sm:flex-row gap-4 animate-fade-up delay-800">
           <a
             href="#contact"
             className="inline-flex items-center justify-center px-8 py-4 text-sm font-medium tracking-wide transition-all duration-300"
@@ -158,7 +149,7 @@ export default function Hero() {
 
       {/* Bottom level rail */}
       <div
-        className="relative z-10 mx-8 md:mx-16 mb-8 flex items-center gap-6 animate-fade-in delay-800"
+        className="relative z-10 mx-8 md:mx-16 mb-8 flex items-center gap-6 animate-fade-in delay-2500"
         style={{ color: "var(--ink-dim)" }}
       >
         <div className="flex-1 h-px" style={{ background: "var(--border-sage)" }} />
