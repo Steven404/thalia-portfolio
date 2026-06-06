@@ -10,14 +10,16 @@ export default function Navbar() {
   const locale = useLocale();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [menuClosing, setMenuClosing] = useState(false);
   const [mounted, setMounted] = useState(false);
   const ignoreOpenRef = useRef(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   const navLinks = [
     { href: "#classes", label: t("classes"), id: "classes" },
     { href: "#philosophy", label: t("philosophy"), id: "philosophy" },
-    { href: "#why-english", label: t("why"), id: "why" },
+    { href: "#why-english", label: t("why"), id: "why-english" },
     { href: "#contact", label: t("contact"), id: "contact" },
   ];
 
@@ -40,13 +42,13 @@ export default function Navbar() {
       });
 
       const nearBottom = scrollY + windowHeight >= docHeight - 4;
-      // if (nearBottom) {
-      //   setActiveSection(sections[sections.length - 1].id);
-      //   return;
-      // }
+      if (nearBottom) {
+        setActiveSection(sections[sections.length - 1].id);
+        return;
+      }
 
-      // const passed = sections.filter(({ top }) => top <= scrollY + HEADER_HEIGHT + 10);
-      // setActiveSection(passed.length === 0 ? '' : passed[passed.length - 1].id);
+      const passed = sections.filter(({ top }) => top <= scrollY + HEADER_HEIGHT + 10);
+      setActiveSection(passed.length === 0 ? '' : passed[passed.length - 1].id);
     };
 
     updateActive();
@@ -57,12 +59,16 @@ export default function Navbar() {
   useEffect(() => setMounted(true), []);
 
   const closeMenu = () => {
-    setMenuOpen(false);
-    // Block ghost clicks from re-opening the menu after close (mobile)
+    // Start exit animation; block ghost-click reopens immediately
+    setMenuClosing(true);
     ignoreOpenRef.current = true;
     window.setTimeout(() => {
-      ignoreOpenRef.current = false;
-    }, 400);
+      setMenuOpen(false);
+      setMenuClosing(false);
+      window.setTimeout(() => {
+        ignoreOpenRef.current = false;
+      }, 50);
+    }, 230); // matches menuSlideOut duration + small buffer
   };
 
   const openMenu = () => {
@@ -90,11 +96,9 @@ export default function Navbar() {
   return (
     <>
       <header
-        className="z-50 flex items-center justify-between px-8 py-8 md:px-16 sticky lg:fixed lg:w-full top-0 transition-all duration-300"
+        className="animate-nav-enter z-50 flex items-center justify-between px-8 py-8 md:px-16 sticky lg:fixed lg:w-full top-0 transition-all duration-300"
         style={{
-          background: scrolled
-            ? "rgb(146, 182, 146, 0.5)" // sage-bright with less opacity
-            : "rgba(0,49,53,0)",
+          background: scrolled ? "rgb(146, 182, 146, 0.5)" : "rgba(0,49,53,0)",
           backdropFilter: scrolled ? "blur(14px)" : "none",
           borderBottom: scrolled
             ? "1px solid var(--sage-bright)"
@@ -103,8 +107,8 @@ export default function Navbar() {
       >
         <div className="flex gap-1 items-center">
           <span
-            className="text-sm lg:text-md font-medium tracking-[0.2em] uppercase animate-fade-in"
-            style={{ color: "var(--sage)", animationDelay: "0s" }}
+            className="text-sm lg:text-md font-medium tracking-[0.2em] uppercase"
+            style={{ color: "var(--sage)" }}
           >
             {t("name")}
           </span>
@@ -112,33 +116,23 @@ export default function Navbar() {
 
         {/* Desktop: links + locale toggle */}
         <div className="pl-5 hidden lg:flex items-center gap-4 xl:gap-8">
-          <div
-            className="flex gap-4 xl:gap-8 text-sm animate-fade-in delay-200"
-            style={{ color: "var(--ink-muted)" }}
-          >
-            {navLinks.map(({ href, label }) => (
+          <div className="flex gap-4 xl:gap-8 text-sm">
+            {navLinks.map(({ href, label, id }) => (
               <a
                 key={href}
                 href={href}
-                className="transition-colors cursor-pointer whitespace-nowrap"
-                style={{ color: "var(--ink-muted)" }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.color = "var(--sage)")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = "var(--ink-muted)")
-                }
+                className={`nav-link${activeSection === id ? " is-active" : ""}`}
               >
                 {label}
               </a>
             ))}
           </div>
 
-          <div className="flex items-center gap-1 text-xs font-medium tracking-widest animate-fade-in delay-300">
+          <div className="flex items-center gap-1 text-xs font-medium tracking-widest">
             <Link
               href={pathname}
               locale="en"
-              className="transition-colors px-1 py-0.5"
+              className="transition-all duration-200 px-1 py-0.5"
               style={{
                 color: locale === "en" ? "var(--sage)" : "var(--ink-dim)",
                 borderBottom:
@@ -159,7 +153,7 @@ export default function Navbar() {
             <Link
               href={pathname}
               locale="el"
-              className="transition-colors px-1 py-0.5"
+              className="transition-all duration-200 px-1 py-0.5"
               style={{
                 color: locale === "el" ? "var(--sage)" : "var(--ink-dim)",
                 borderBottom:
@@ -175,7 +169,7 @@ export default function Navbar() {
 
         {/* Mobile: hamburger button — hidden while menu is open to avoid ghost-click reopen */}
         <button
-          className={`lg:hidden pl-5 flex flex-col justify-center items-center w-11 h-11 gap-[6px] cursor-pointer ${
+          className={`hamburger lg:hidden pl-5 flex flex-col justify-center items-center w-11 h-11 gap-[6px] cursor-pointer ${
             menuOpen ? "pointer-events-none invisible" : ""
           }`}
           onClick={openMenu}
@@ -183,24 +177,15 @@ export default function Navbar() {
           aria-expanded={menuOpen}
           tabIndex={menuOpen ? -1 : 0}
         >
-          <span
-            className="block h-px w-6 transition-colors"
-            style={{ background: "var(--ink-muted)" }}
-          />
-          <span
-            className="block h-px w-6 transition-colors"
-            style={{ background: "var(--ink-muted)" }}
-          />
-          <span
-            className="block h-px w-4 transition-colors"
-            style={{ background: "var(--ink-muted)" }}
-          />
+          <span className="hamburger-line w-6" />
+          <span className="hamburger-line w-6" />
+          <span className="hamburger-line w-4" />
         </button>
       </header>
 
       {/* Mobile menu overlay — portaled to body to escape overflow/stacking contexts */}
       {mounted &&
-        menuOpen &&
+        (menuOpen || menuClosing) &&
         createPortal(
           <div
             className="fixed inset-0 lg:hidden"
@@ -215,16 +200,20 @@ export default function Navbar() {
               style={{
                 background: "oklch(97.5% 0.017 75 / 0.96)",
                 backdropFilter: "blur(16px)",
+                animation: menuClosing
+                  ? "backdropHide 0.2s cubic-bezier(0.4, 0, 1, 1) forwards"
+                  : "backdropReveal 0.28s ease-out forwards",
               }}
               onClick={closeMenu}
             />
 
             {/* Panel */}
             <div
-              className="relative z-10 flex flex-col h-full px:8 py-8 md:px-16"
+              className="relative z-10 flex flex-col h-full px-8 py-8 md:px-16"
               style={{
-                animation:
-                  "menuSlideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+                animation: menuClosing
+                  ? "menuSlideOut 0.22s cubic-bezier(0.4, 0, 1, 1) forwards"
+                  : "menuSlideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards",
               }}
             >
               {/* Header row */}
@@ -240,6 +229,11 @@ export default function Navbar() {
                 <button
                   type="button"
                   className="relative z-20 flex items-center justify-center w-11 h-11 cursor-pointer touch-manipulation"
+                  style={{
+                    animation:
+                      "fadeIn 0.35s 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+                    opacity: 0,
+                  }}
                   onClick={(e) => {
                     e.stopPropagation();
                     closeMenu();
@@ -281,19 +275,13 @@ export default function Navbar() {
                   <a
                     key={href}
                     href={href}
-                    className="py-4 text-3xl font-light tracking-wide transition-colors"
+                    className="animate-menu-link py-4 text-3xl font-light tracking-wide"
                     style={{
                       color: "var(--sage)",
                       borderBottom: "1px solid var(--border)",
-                      animationDelay: `${0.06 * i}s`,
+                      animationDelay: `${0.08 * i + 0.12}s`,
                     }}
                     onClick={closeMenu}
-                    onTouchStart={(e) =>
-                      (e.currentTarget.style.color = "var(--sage)")
-                    }
-                    onTouchEnd={(e) =>
-                      (e.currentTarget.style.color = "var(--ink-muted)")
-                    }
                   >
                     {label}
                   </a>
@@ -301,11 +289,14 @@ export default function Navbar() {
               </nav>
 
               {/* Locale toggle */}
-              <div className="flex items-center gap-3 pb-safe">
+              <div
+                className="flex items-center gap-3 pb-safe animate-fade-in"
+                style={{ animationDelay: `${0.08 * navLinks.length + 0.2}s` }}
+              >
                 <Link
                   href={pathname}
                   locale="en"
-                  className="text-sm font-medium tracking-widest px-2 py-2 transition-colors"
+                  className="text-sm font-medium tracking-widest px-2 py-2 transition-all duration-200"
                   style={{
                     color: locale === "en" ? "var(--sage)" : "var(--ink-dim)",
                     borderBottom:
@@ -321,7 +312,7 @@ export default function Navbar() {
                 <Link
                   href={pathname}
                   locale="el"
-                  className="text-sm font-medium tracking-widest px-2 py-2 transition-colors"
+                  className="text-sm font-medium tracking-widest px-2 py-2 transition-all duration-200"
                   style={{
                     color: locale === "el" ? "var(--sage)" : "var(--ink-dim)",
                     borderBottom:

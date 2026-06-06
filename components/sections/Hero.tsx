@@ -147,9 +147,31 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* Scroll indicator — desktop only, purely decorative */}
+      <a
+        href="#classes"
+        className="hidden lg:block absolute bottom-20 left-1/2 -translate-x-1/2 animate-fade-in delay-1500"
+        aria-hidden="true"
+        tabIndex={-1}
+        style={{ lineHeight: 0 }}
+      >
+        <div
+          style={{
+            width: "1.5px",
+            height: "52px",
+            background: "var(--border-sage)",
+            borderRadius: "1px",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          <div className="scroll-dot" />
+        </div>
+      </a>
+
       {/* Bottom level rail */}
       <div
-        className="relative z-10 mx-8 md:mx-16 mb-8 flex items-center gap-6 animate-fade-in delay-2500"
+        className="relative z-10 mx-8 md:mx-16 mb-8 flex items-center gap-6 animate-fade-in delay-1500"
         style={{ color: "var(--ink-dim)" }}
       >
         <div

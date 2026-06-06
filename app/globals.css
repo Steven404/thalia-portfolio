@@ -2,22 +2,22 @@
 
 :root {
   /* ── Core surfaces ──────────────────────────────── */
-  --bg:            oklch(97.5% 0.017 75);    /* warm cream ≈ #fff7ee */
-  --surface:       oklch(95% 0.022 145);     /* very pale sage – alternating sections */
-  --surface-card:  oklch(99% 0.008 75);      /* warm near-white cards */
-  --surface-hover: oklch(93% 0.026 145);     /* card hover – deeper sage tint */
-  --border:        oklch(89% 0.016 75);      /* warm light hairline */
-  --border-sage:   oklch(84% 0.038 145);     /* sage accent border */
+  --bg: oklch(97.5% 0.017 75); /* warm cream ≈ #fff7ee */
+  --surface: oklch(95% 0.022 145); /* very pale sage – alternating sections */
+  --surface-card: oklch(99% 0.008 75); /* warm near-white cards */
+  --surface-hover: oklch(93% 0.026 145); /* card hover – deeper sage tint */
+  --border: oklch(89% 0.016 75); /* warm light hairline */
+  --border-sage: oklch(84% 0.038 145); /* sage accent border */
 
   /* ── Text ───────────────────────────────────────── */
-  --ink:           oklch(27% 0.016 133);     /* near-black, sage tinted ≥10:1 on cream */
-  --ink-muted:     oklch(44% 0.016 133);     /* readable body text ≥5:1 on cream */
-  --ink-dim:       oklch(63% 0.014 133);     /* muted decorative */
+  --ink: oklch(27% 0.016 133); /* near-black, sage tinted ≥10:1 on cream */
+  --ink-muted: oklch(44% 0.016 133); /* readable body text ≥5:1 on cream */
+  --ink-dim: oklch(63% 0.014 133); /* muted decorative */
 
   /* ── Sage accent — brand #93bd96 family ──────────── */
-  --sage:          oklch(46% 0.085 145);     /* dark sage for text — ≥4.5:1 on cream */
-  --sage-bright:   oklch(74% 0.065 145);     /* ≈ #93bd96 – button bg, brand accent */
-  --sage-dim:      oklch(84% 0.038 145);     /* decorative borders/fills only */
+  --sage: oklch(46% 0.085 145); /* dark sage for text — ≥4.5:1 on cream */
+  --sage-bright: oklch(74% 0.065 145); /* ≈ #93bd96 – button bg, brand accent */
+  --sage-dim: oklch(84% 0.038 145); /* decorative borders/fills only */
 }
 
 @theme inline {
@@ -45,26 +45,80 @@ body {
 /* ── Animations ─────────────────────────────────────── */
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Navbar slides down as a unified unit on page load */
+@keyframes navEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile menu link stagger: slides in from the left */
+@keyframes menuLinkIn {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Mobile backdrop fade */
+@keyframes backdropReveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration:       0.01ms !important;
-    animation-iteration-count: 1     !important;
-    transition-duration:      0.01ms !important;
-    scroll-behavior:          auto   !important;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
   .animate-fade-up,
-  .animate-fade-in {
-    animation: none;
+  .animate-fade-in,
+  .animate-nav-enter,
+  .animate-menu-link,
+  .animate-backdrop {
+    animation: none !important;
     opacity: 1;
+    transform: none;
+  }
+  .nav-link::after,
+  .hamburger-line {
+    transition: none !important;
   }
 }
 
@@ -78,14 +132,130 @@ body {
   opacity: 0;
 }
 
-.delay-100 { animation-delay: 0.10s; }
-.delay-200 { animation-delay: 0.20s; }
-.delay-300 { animation-delay: 0.30s; }
-.delay-400 { animation-delay: 0.40s; }
-.delay-500 { animation-delay: 0.50s; }
-.delay-600 { animation-delay: 0.60s; }
-.delay-700 { animation-delay: 0.70s; }
-.delay-800 { animation-delay: 0.80s; }
+/* Navbar unified entrance */
+.animate-nav-enter {
+  animation: navEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+/* Mobile menu link — applied per link with animationDelay for stagger */
+.animate-menu-link {
+  animation: menuLinkIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+/* Mobile backdrop */
+.animate-backdrop {
+  animation: backdropReveal 0.28s ease-out forwards;
+}
+
+.delay-100 {
+  animation-delay: 0.1s;
+}
+.delay-200 {
+  animation-delay: 0.2s;
+}
+.delay-300 {
+  animation-delay: 0.3s;
+}
+.delay-400 {
+  animation-delay: 0.4s;
+}
+.delay-500 {
+  animation-delay: 0.5s;
+}
+.delay-600 {
+  animation-delay: 0.6s;
+}
+.delay-700 {
+  animation-delay: 0.7s;
+}
+.delay-800 {
+  animation-delay: 0.8s;
+}
+.delay-1500 {
+  animation-delay: 1.5s;
+}
+
+/* ── Hero scroll indicator ───────────────────────────── */
+@keyframes scrollDrop {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(200%);
+    opacity: 0;
+  }
+}
+
+.scroll-dot {
+  position: absolute;
+  inset: 0;
+  height: 45%;
+  background: var(--sage);
+  border-radius: 1px;
+  animation: scrollDrop 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation-delay: 1.2s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-dot {
+    animation: none;
+    opacity: 0.5;
+    transform: none;
+  }
+}
+
+/* ── Desktop nav link hover — sliding underline ──────── */
+.nav-link {
+  position: relative;
+  color: var(--ink-muted);
+  transition: color 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--sage);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover,
+.nav-link.is-active {
+  color: var(--sage);
+}
+
+.nav-link:hover::after,
+.nav-link.is-active::after {
+  transform: scaleX(1);
+}
+
+/* ── Hamburger button ─────────────────────────────────── */
+.hamburger-line {
+  display: block;
+  height: 1px;
+  background: var(--ink-muted);
+  transition: background 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hamburger:hover .hamburger-line {
+  background: var(--sage);
+}
 
 /* ── Level card hover ────────────────────────────────── */
 .level-card:hover .level-bar {
@@ -94,14 +264,60 @@ body {
 
 /* ── Mobile menu overlay animation ──────────────────── */
 @keyframes menuSlideIn {
-  from { opacity: 0; transform: scale(0.97); }
-  to   { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes menuSlideOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+@keyframes backdropHide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   @keyframes menuSlideIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes menuSlideOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  @keyframes backdropHide {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
   }
 }
 
