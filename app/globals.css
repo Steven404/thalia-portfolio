@@ -127,9 +127,19 @@ body {
   opacity: 0;
 }
 
+.animate-fade-up-hero-image {
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0.001;
+}
+
 .animate-fade-in {
   animation: fadeIn 1s ease forwards;
   opacity: 0;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease forwards;
+  opacity: 0.001;
 }
 
 /* Navbar unified entrance */

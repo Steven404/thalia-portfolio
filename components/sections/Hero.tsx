@@ -23,12 +23,13 @@ export default function Hero() {
         aria-hidden
       >
         <Image
-          className="animate-fade-up delay-500"
+          className="animate-fade-up-hero-image delay-500"
           src="/logo.png"
           alt=""
-          width={1000}
-          height={1000}
+          width={1080}
+          height={335}
           priority
+          fetchPriority="high"
           style={{
             width: "clamp(400px, 38vw, 1000px)",
             height: "auto",
@@ -39,7 +40,7 @@ export default function Hero() {
       {/* Hero content */}
       <div className="relative z-10 flex flex-col lg:justify-center flex-1 px-8 md:px-16 max-w-5xl lg:w-[60%]">
         {/* Logo — mobile only, signature after CTAs */}
-        <div className="mt-4 lg:hidden animate-fade-in delay-500">
+        <div className="mt-4 lg:hidden animate-fade-in-hero-image delay-500">
           <Image
             src="/logo.png"
             alt="English Lessons by Thalia Kiosi"
@@ -47,6 +48,7 @@ export default function Hero() {
             height={0}
             sizes="100vw"
             priority
+            fetchPriority="high"
             style={{
               width: "100vw",
               // height: "auto",

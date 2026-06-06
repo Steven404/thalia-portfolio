@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { useInView } from "@/hooks/useInView";
 import type { ContactItem } from "@/lib/data";
+import { useState } from "react";
 
 interface Props {
   headline1: string;
@@ -57,8 +57,8 @@ export default function ContactContent({
   contactItem,
 }: Props) {
   const { ref: headerRef, inView: headerIn } = useInView(0.4);
-  const { ref: blockRef, inView: blockIn } = useInView(0.30);
-  const { ref: footerRef, inView: footerIn } = useInView(0.30);
+  const { ref: blockRef, inView: blockIn } = useInView(0.3);
+  const { ref: footerRef, inView: footerIn } = useInView(0.3);
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -83,22 +83,23 @@ export default function ContactContent({
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
-
         {/* ── Header ─────────────────────────────────── */}
         <div ref={headerRef} className="mb-10 md:mb-16">
           <h2
             className="leading-tight"
-            style={{
-              fontFamily: "var(--font-playfair), Playfair Display, serif",
-              fontSize: "clamp(36px, 5vw, 64px)",
-              color: "var(--ink)",
-              fontWeight: 700,
-              textWrap: "balance",
-              letterSpacing: "-0.02em",
-              opacity: headerIn ? 1 : 0,
-              transform: headerIn ? "translateY(0)" : "translateY(24px)",
-              transition: `opacity 700ms ${EXPO}, transform 700ms ${EXPO}`,
-            } as React.CSSProperties}
+            style={
+              {
+                fontFamily: "var(--font-playfair), Playfair Display, serif",
+                fontSize: "clamp(36px, 5vw, 64px)",
+                color: "var(--ink)",
+                fontWeight: 700,
+                textWrap: "balance",
+                letterSpacing: "-0.02em",
+                opacity: headerIn ? 1 : 0,
+                transform: headerIn ? "translateY(0)" : "translateY(24px)",
+                transition: `opacity 700ms ${EXPO}, transform 700ms ${EXPO}`,
+              } as React.CSSProperties
+            }
           >
             {headline1}
             <br />
@@ -157,7 +158,7 @@ export default function ContactContent({
           <a
             href={contactItem.href}
             aria-label={`Send an email to ${contactItem.value}`}
-            className="flex items-center justify-between gap-6 px-8 py-10 md:px-12 md:py-12 rounded-2xl"
+            className="flex items-center justify-between gap-2 md:gap-6 px-4 py-7 md:px-12 md:py-12 rounded-2xl"
             style={{
               background: hovered ? "var(--surface-hover)" : "var(--surface)",
               transition: `background 300ms ${EXPO}`,
@@ -166,7 +167,7 @@ export default function ContactContent({
             onMouseLeave={() => setHovered(false)}
           >
             {/* Left: icon badge + contact info */}
-            <div className="flex items-center gap-6 md:gap-8 min-w-0">
+            <div className="flex items-center gap-4 md:gap-8 min-w-0">
               <div
                 className="shrink-0 flex items-center justify-center rounded-xl"
                 style={{
@@ -234,13 +235,13 @@ export default function ContactContent({
           }}
         >
           <span
-            className="text-xs tracking-[0.2em] uppercase"
+            className="text-xs tracking-[0.2em] uppercase max-md:text-center"
             style={{ color: "var(--ink-dim)" }}
           >
             {footerCopy}
           </span>
           <span
-            className="text-xs italic"
+            className="text-xs italic max-md:text-center max-md:w-full"
             style={{
               fontFamily: "var(--font-playfair), Playfair Display, serif",
               color: "var(--sage)",
@@ -282,7 +283,6 @@ export default function ContactContent({
             </a>
           </span>
         </div>
-
       </div>
     </>
   );
