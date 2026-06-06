@@ -173,7 +173,7 @@ export default function Hero() {
 
       {/* Bottom level rail */}
       <div
-        className="relative z-10 mx-8 md:mx-16 mb-8 flex items-center gap-6 animate-fade-in delay-1500"
+        className="relative z-10 mx-8 md:mx-16 mb-8 flex items-center gap-6 animate-fade-in delay-1500 max-sm:mt-8"
         style={{ color: "var(--ink-dim)" }}
       >
         <div
