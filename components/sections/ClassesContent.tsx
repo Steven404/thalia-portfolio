@@ -1,7 +1,8 @@
 "use client";
 
-import { useInView } from "@/hooks/useInView";
 import LevelCard from "@/components/ui/LevelCard";
+import { useInView } from "@/hooks/useInView";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import type { Level } from "@/lib/data";
 
 interface Props {
@@ -21,8 +22,9 @@ export default function ClassesContent({
   footnote,
   levels,
 }: Props) {
+  const isMobile = useMediaQuery("(max-width: 639px)");
   const { ref: headerRef, inView: headerIn } = useInView(0.60);
-  const { ref: gridRef, inView: gridIn } = useInView(0.3);
+  const { ref: gridRef, inView: gridIn } = useInView(isMobile ? 0.1 : 0.3);
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -102,3 +104,4 @@ export default function ClassesContent({
     </div>
   );
 }
+
