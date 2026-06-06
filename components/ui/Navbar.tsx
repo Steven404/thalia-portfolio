@@ -90,7 +90,7 @@ export default function Navbar() {
   return (
     <>
       <header
-        className="z-50 flex items-center justify-between px-8 py-8 md:px-16 sticky md:fixed md:w-full top-0 transition-all duration-300"
+        className="z-50 flex items-center justify-between px-8 py-8 md:px-16 sticky lg:fixed lg:w-full top-0 transition-all duration-300"
         style={{
           background: scrolled
             ? "rgb(146, 182, 146, 0.5)" // sage-bright with less opacity
@@ -203,7 +203,7 @@ export default function Navbar() {
         menuOpen &&
         createPortal(
           <div
-            className="fixed inset-0 md:hidden"
+            className="fixed inset-0 lg:hidden"
             style={{ zIndex: 50 }}
             role="dialog"
             aria-modal="true"
@@ -221,7 +221,7 @@ export default function Navbar() {
 
             {/* Panel */}
             <div
-              className="relative z-10 flex flex-col h-full px-8 py-8"
+              className="relative z-10 flex flex-col h-full px:8 py-8 md:px-16"
               style={{
                 animation:
                   "menuSlideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards",

@@ -1,11 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 export default function Hero() {
   const t = useTranslations("hero");
-
 
   // TODO: Find way to calculate header height and remove it from the min-h-screen size
   return (
@@ -38,8 +37,7 @@ export default function Hero() {
       </div>
 
       {/* Hero content */}
-      <div className="relative z-10 flex flex-col justify-center flex-1 px-8 md:px-16 max-w-5xl lg:w-[60%]">
-
+      <div className="relative z-10 flex flex-col lg:justify-center flex-1 px-8 md:px-16 max-w-5xl lg:w-[60%]">
         {/* Logo — mobile only, signature after CTAs */}
         <div className="mt-4 lg:hidden animate-fade-in delay-500">
           <Image
@@ -114,7 +112,8 @@ export default function Hero() {
             onMouseEnter={(e) => {
               e.currentTarget.style.background = "oklch(70% 0.072 145)";
               e.currentTarget.style.transform = "translateY(-1px)";
-              e.currentTarget.style.boxShadow = "0 4px 18px oklch(46% 0.085 145 / 0.20)";
+              e.currentTarget.style.boxShadow =
+                "0 4px 18px oklch(46% 0.085 145 / 0.20)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = "var(--sage-bright)";
@@ -146,7 +145,6 @@ export default function Hero() {
             {t("cta_secondary")}
           </a>
         </div>
-
       </div>
 
       {/* Bottom level rail */}
@@ -154,9 +152,20 @@ export default function Hero() {
         className="relative z-10 mx-8 md:mx-16 mb-8 flex items-center gap-6 animate-fade-in delay-2500"
         style={{ color: "var(--ink-dim)" }}
       >
-        <div className="flex-1 h-px" style={{ background: "var(--border-sage)" }} />
-        <span className="text-xs tracking-widest uppercase" style={{ color: "var(--sage-dim)" }}>A1 · A2 · B1 · B2 · C1 · C2</span>
-        <div className="flex-1 h-px" style={{ background: "var(--border-sage)" }} />
+        <div
+          className="flex-1 h-px"
+          style={{ background: "var(--border-sage)" }}
+        />
+        <span
+          className="text-xs tracking-widest uppercase"
+          style={{ color: "var(--sage-dim)" }}
+        >
+          A1 · A2 · B1 · B2 · C1 · C2
+        </span>
+        <div
+          className="flex-1 h-px"
+          style={{ background: "var(--border-sage)" }}
+        />
       </div>
     </section>
   );
