@@ -107,7 +107,7 @@ export default function Navbar() {
       >
         <div className="flex gap-1 items-center">
           <span
-            className="text-sm lg:text-md font-medium tracking-[0.2em] uppercase"
+            className="text-sm lg:text-md font-medium tracking-widest xl:tracking-[0.2em] uppercase md:text-nowrap"
             style={{ color: "var(--sage)" }}
           >
             {t("name")}

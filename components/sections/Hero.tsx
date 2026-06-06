@@ -58,7 +58,7 @@ export default function Hero() {
         </div>
 
         <h1
-          className="animate-fade-in delay-100 leading-[1.05] mb-8 max-lg:mt-10 text-nowrap"
+          className="animate-fade-in delay-100 leading-[1.05] mb-8 md:text-nowrap mt-8"
           style={{
             fontFamily: "var(--font-playfair), Playfair Display, serif",
             fontSize: "clamp(36px, 5.5vw, 72px)",
@@ -101,7 +101,7 @@ export default function Hero() {
           </p>
         </div>
 
-        <div className="mt-10 flex flex-col sm:flex-row gap-4 animate-fade-up delay-800">
+        <div className="mt-8 flex flex-col sm:flex-row gap-4 animate-fade-up delay-800">
           <a
             href="#contact"
             className="inline-flex items-center justify-center px-8 py-4 text-sm font-medium tracking-wide transition-all duration-300"
