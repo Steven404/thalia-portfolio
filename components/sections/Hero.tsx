@@ -58,13 +58,12 @@ export default function Hero() {
         </div>
 
         <h1
-          className="animate-fade-in delay-100 leading-[1.05] mb-8 max-lg:mt-10"
+          className="animate-fade-in delay-100 leading-[1.05] mb-8 max-lg:mt-10 text-nowrap"
           style={{
             fontFamily: "var(--font-playfair), Playfair Display, serif",
             fontSize: "clamp(36px, 5.5vw, 72px)",
             color: "var(--ink)",
             fontWeight: 800,
-            textWrap: "balance",
             letterSpacing: "-0.02em",
           }}
         >
@@ -77,25 +76,25 @@ export default function Hero() {
 
         <div className="max-w-3xl flex flex-col gap-4 animate-fade-up delay-700 text-justify">
           <p
-            className="text-sm md:text-base leading-relaxed"
+            className="text-sm 2xl:text-base leading-relaxed"
             style={{ color: "var(--ink-muted)", fontWeight: 400 }}
           >
             {t("description1")}
           </p>
           <p
-            className="text-sm md:text-base leading-relaxed"
+            className="text-sm 2xl:text-base leading-relaxed"
             style={{ color: "var(--ink-muted)", fontWeight: 300 }}
           >
             {t("description2")}
           </p>
           <p
-            className="text-sm md:text-base leading-relaxed"
+            className="text-sm 2xl:text-base leading-relaxed"
             style={{ color: "var(--ink-muted)", fontWeight: 300 }}
           >
             {t("description3")}
           </p>
           <p
-            className="text-sm md:text-base leading-relaxed"
+            className="text-sm 2xl:text-base leading-relaxed"
             style={{ color: "var(--ink-muted)", fontWeight: 300 }}
           >
             {t("description4")}
