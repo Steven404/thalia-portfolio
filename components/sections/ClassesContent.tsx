@@ -21,8 +21,8 @@ export default function ClassesContent({
   footnote,
   levels,
 }: Props) {
-  const { ref: headerRef, inView: headerIn } = useInView(0.50);
-  const { ref: gridRef, inView: gridIn } = useInView(0.30);
+  const { ref: headerRef, inView: headerIn } = useInView(0.60);
+  const { ref: gridRef, inView: gridIn } = useInView(0.3);
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -42,7 +42,7 @@ export default function ClassesContent({
               /* entrance */
               opacity: headerIn ? 1 : 0,
               transform: headerIn ? "translateY(0)" : "translateY(22px)",
-              transition: `opacity 700ms ${EXPO}, transform 700ms ${EXPO}`,
+              transition: `opacity 1000ms ${EXPO}, transform 1000ms ${EXPO}`,
             } as React.CSSProperties}
           >
             {headline1}

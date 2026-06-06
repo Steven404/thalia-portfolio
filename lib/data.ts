@@ -28,7 +28,7 @@ export const LEVEL_CODES = ["A1", "A2", "B1", "B2", "C1", "C2"] as const;
 
 export const CONTACT_HREFS = {
   phone: { href: "tel:+1234567890", value: "+1 (234) 567-890" },
-  email: { href: "mailto:thalia@example.com", value: "thalia@example.com" },
+  email: { href: "mailto:thaliakio4@gmail.com", value: "thaliakio4@gmail.com" },
   instagram: {
     href: "https://instagram.com/thalia.english",
     value: "@thalia.english",

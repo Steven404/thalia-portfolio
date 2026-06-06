@@ -1,6 +1,7 @@
 "use client";
 
 import type { Level } from "@/lib/data";
+import { useEffect, useState } from "react";
 
 interface LevelCardProps {
   level: Level;
@@ -11,11 +12,17 @@ interface LevelCardProps {
 }
 
 const EXPO = "cubic-bezier(0.16, 1, 0.3, 1)";
-const STAGGER_MS = 90;
+const STAGGER_MS = 150;
 
 export default function LevelCard({ level, index = 0, inView = true }: LevelCardProps) {
-  const cardDelay = index * STAGGER_MS;
+  const [cardDelay, setCardDelay] = useState(index * STAGGER_MS)
   const barDelay  = cardDelay + 1000;
+
+  useEffect(() => {
+    if(inView) {
+      setTimeout(() => setCardDelay(0), 1000)
+    }
+  }, [inView])
 
   return (
     <div
