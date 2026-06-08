@@ -32,6 +32,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "metadata" });
+  const faviconLocale = locale === "el" ? "el" : "en";
 
   return {
     metadataBase: new URL("https://english-with-thalia.site"),
@@ -42,8 +43,11 @@ export async function generateMetadata({
       languages: { en: "/", el: "/el", "x-default": "/" },
     },
     icons: {
-      icon: "/icon.png",
-      apple: "/icon.png",
+      icon: [
+        { url: `/icon-${faviconLocale}.svg`, sizes: "any" },
+        // { url: `/icon-${faviconLocale}.png`, type: "image/png" },
+      ],
+      apple: `/icon-${faviconLocale}.svg`,
     },
     keywords: t("keywords"),
   };
@@ -66,9 +70,6 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={`${playfair.variable} ${dmSans.variable}`}>
-      <head>
-        <link rel="icon" href="/thalia.png"></link>
-      </head>
       <body className="min-h-screen">
         <NextIntlClientProvider messages={messages}>
           <ScrollRestoration />
