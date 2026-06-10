@@ -78,7 +78,7 @@ const EXPO = "cubic-bezier(0.16, 1, 0.3, 1)";
 const STAGGER_MS = 80;
 
 export default function ContactCard({ item, index, inView }: ContactCardProps) {
-  const Icon = icons[item.icon];
+  const Icon = EmailIcon;
   const [hovered, setHovered] = useState(false);
   const [pressed, setPressed] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
