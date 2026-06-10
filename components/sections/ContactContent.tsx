@@ -1,8 +1,7 @@
 "use client";
 
 import { useInView } from "@/hooks/useInView";
-import type { ContactItem } from "@/lib/data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
   headline1: string;
@@ -10,10 +9,15 @@ interface Props {
   body: string;
   footerCopy: string;
   footerQuote: string;
-  contactItem: ContactItem;
+  emailItem: { label: string; subtitle: string };
 }
 
 const EXPO = "cubic-bezier(0.16, 1, 0.3, 1)";
+
+const EMAIL_CODES = [
+  116, 104, 97, 108, 105, 97, 107, 105, 111, 52, 64, 103, 109, 97, 105, 108, 46,
+  99, 111, 109,
+];
 
 const EmailIcon = () => (
   <svg
@@ -54,12 +58,21 @@ export default function ContactContent({
   body,
   footerCopy,
   footerQuote,
-  contactItem,
+  emailItem,
 }: Props) {
   const { ref: headerRef, inView: headerIn } = useInView(0.4);
   const { ref: blockRef, inView: blockIn } = useInView(0.3);
   const { ref: footerRef, inView: footerIn } = useInView(0.3);
   const [hovered, setHovered] = useState(false);
+
+  const [emailHref, setEmailHref] = useState("#");
+  const [emailValue, setEmailValue] = useState("");
+
+  useEffect(() => {
+    const email = String.fromCharCode(...EMAIL_CODES);
+    setEmailHref(`mailto:${email}`);
+    setEmailValue(email);
+  }, []);
 
   return (
     <>
@@ -156,8 +169,8 @@ export default function ContactContent({
           }}
         >
           <a
-            href={contactItem.href}
-            aria-label={`Send an email to ${contactItem.value}`}
+            href={emailHref}
+            aria-label={`Send an email to ${emailValue}`}
             className="flex items-center justify-between gap-2 md:gap-6 px-4 py-7 md:px-12 md:py-12 rounded-2xl"
             style={{
               background: hovered ? "var(--surface-hover)" : "var(--surface)",
@@ -188,7 +201,7 @@ export default function ContactContent({
                   className="text-xs font-semibold tracking-widest uppercase mb-1"
                   style={{ color: "var(--sage)" }}
                 >
-                  {contactItem.label}
+                  {emailItem.label}
                 </p>
                 <p
                   className="font-semibold truncate"
@@ -198,13 +211,13 @@ export default function ContactContent({
                     transition: `color 300ms ${EXPO}`,
                   }}
                 >
-                  {contactItem.value}
+                  {emailValue}
                 </p>
                 <p
                   className="mt-1 text-sm"
                   style={{ color: "var(--ink-muted)" }}
                 >
-                  {contactItem.subtitle}
+                  {emailItem.subtitle}
                 </p>
               </div>
             </div>
