@@ -1,13 +1,10 @@
-import { getTranslations } from "next-intl/server";
 import ContactContent from "@/components/sections/ContactContent";
-import { CONTACT_HREFS } from "@/lib/data";
+import { getTranslations } from "next-intl/server";
 
 export default async function Contact() {
   const t = await getTranslations("contact");
 
   const emailItem = {
-    icon: "email" as const,
-    ...CONTACT_HREFS.email,
     label: t("email.label"),
     subtitle: t("email.subtitle"),
   };
@@ -24,7 +21,7 @@ export default async function Contact() {
         body={t("body")}
         footerCopy={t("footer_copy")}
         footerQuote={t("footer_quote")}
-        contactItem={emailItem}
+        emailItem={emailItem}
       />
     </section>
   );
